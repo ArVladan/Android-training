@@ -14,23 +14,38 @@
     <TextView
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:text="Login" />
-
-    <TextView
-        android:text="Registration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
+        android:text="Login"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignStart="@+id/textView2" />
 
     <TextView
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:text="Password"
         android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp" />
+
+    <TextView
+        android:text="Registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2" />
+
+    <Button
+        android:text="OK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginTop="18dp"
+        style="@style/Widget.AppCompat.Button"
+        android:elevation="5dp" />
 
 
 </RelativeLayout>
