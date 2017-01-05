@@ -1,6 +1,7 @@
 package promo.kit.mycinema;
 
 
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +53,7 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
         public void bindFilm(Movie movie) {
             mMovie = movie;
             mNameView.setText(mMovie.getName());
-            mImage.setId(mMovie.getPosterId());
+            mImage.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), mMovie.getPosterId()));
         }
     }
 }
