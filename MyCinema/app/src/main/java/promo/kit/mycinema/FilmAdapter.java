@@ -1,6 +1,7 @@
 package promo.kit.mycinema;
 
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
     private List<Movie> mMovieList;
     public FilmAdapter(List<Movie> movies) {
         mMovieList = movies;
+
     }
 
     @Override
@@ -38,22 +40,38 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
         Movie movie = mMovieList.get(position);
         holder.bindFilm(movie);
     }
+    public static OnItemClickListener listener;
+
+    public interface OnItemClickListener{
+        void onItemClick(View itemView, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
+
 
     public class FilmHolder extends RecyclerView.ViewHolder {
         private ImageView mImage;
-        private TextView mNameView;
+        private TextView yaerMovie;
+        private TextView genreMovie;
         private Movie mMovie;
 
-        public FilmHolder(View itemView) {
+        public FilmHolder(final View itemView) {
             super(itemView);
             mImage = (ImageView) itemView.findViewById(R.id.imageView);
-            mNameView = (TextView) itemView.findViewById(R.id.textView);
+            yaerMovie = (TextView) itemView.findViewById(R.id.yearMovie);
+            genreMovie = (TextView) itemView.findViewById(R.id.genreMovie);
+
         }
 
         public void bindFilm(Movie movie) {
             mMovie = movie;
-            mNameView.setText(mMovie.getName());
+            yaerMovie.setText(mMovie.getYear());
+            genreMovie.setText(mMovie.getGanre());
             mImage.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), mMovie.getPosterId()));
         }
     }
+
+
 }

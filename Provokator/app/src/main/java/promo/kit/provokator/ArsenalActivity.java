@@ -3,6 +3,7 @@ package promo.kit.provokator;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -18,24 +19,39 @@ public class ArsenalActivity extends AppCompatActivity {
     private Context mContext;
     private ArsAdapter mArsAdapter;
     private RecyclerView mRecyclerView;
-    private List<Arsenal> sArsenalList;
+    private List<Arsenal> mArsenalList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_main);
+        setContentView(R.layout.arsenal);
+
+        mContext = getApplicationContext();
+
+        createArsenalList();
+
+        RecyclerView.LayoutManager layoutManager;
+        layoutManager = new GridLayoutManager(mContext, 2);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycle);
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        mArsAdapter = new ArsAdapter(mArsenalList);
+        mRecyclerView.setAdapter(mArsAdapter);
+
     }
     private void createArsenalList() {
-        sArsenalList = new ArrayList<>();
-        sArsenalList.add(new Arsenal(R.drawable.rod));
-        sArsenalList.add(new Arsenal(R.drawable.bait));
-        sArsenalList.add(new Arsenal(R.drawable.feed));
-        sArsenalList.add(new Arsenal(R.drawable.feeder));
-        sArsenalList.add(new Arsenal(R.drawable.hooks));
-        sArsenalList.add(new Arsenal(R.drawable.ic_float));
-        sArsenalList.add(new Arsenal(R.drawable.accessories));
-        sArsenalList.add(new Arsenal(R.drawable.category));
+        mArsenalList = new ArrayList<>();
+        mArsenalList.add(new Arsenal(R.drawable.rod));
+        mArsenalList.add(new Arsenal(R.drawable.bait));
+        mArsenalList.add(new Arsenal(R.drawable.feed));
+        mArsenalList.add(new Arsenal(R.drawable.feeder));
+        mArsenalList.add(new Arsenal(R.drawable.sinker));
+        mArsenalList.add(new Arsenal(R.drawable.ic_float));
+        mArsenalList.add(new Arsenal(R.drawable.hooks));
+        mArsenalList.add(new Arsenal(R.drawable.accessories));
+        mArsenalList.add(new Arsenal(R.drawable.category));
 
 
     }
