@@ -1,7 +1,6 @@
-package promo.kit.mycinema;
+package promo.kit.mycinema.adapter;
 
 
-import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,64 +11,72 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import promo.kit.mycinema.R;
+import promo.kit.mycinema.model.Movie;
+
 /**
  * Created by Влад on 31.12.16.
  */
 
-public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder> {
-    private List<Movie> mMovieList;
-    public FilmAdapter(List<Movie> movies) {
-        mMovieList = movies;
-
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
+    private List<Movie> movieList;
+    public MovieAdapter(List<Movie> movies) {
+        movieList = movies;
     }
 
     @Override
-    public FilmAdapter.FilmHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MovieHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item, parent, false);
-        return new FilmHolder(view);
+        return new MovieHolder(view);
     }
 
     @Override
     public int getItemCount() {
-        return mMovieList.size();
+        return movieList.size();
     }
 
     @Override
-    public void onBindViewHolder(FilmHolder holder, int position) {
-        Movie movie = mMovieList.get(position);
+    public void onBindViewHolder(MovieHolder holder, int position) {
+        Movie movie = movieList.get(position);
         holder.bindFilm(movie);
     }
     public static OnItemClickListener listener;
 
     public interface OnItemClickListener{
-        void onItemClick(View itemView, int position);
+        void onItemClick(Movie movie);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
         this.listener = listener;
     }
 
-
-    public class FilmHolder extends RecyclerView.ViewHolder {
+    public class MovieHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView mImage;
         private TextView yaerMovie;
         private TextView genreMovie;
         private Movie mMovie;
 
-        public FilmHolder(final View itemView) {
+        public MovieHolder(final View itemView) {
             super(itemView);
             mImage = (ImageView) itemView.findViewById(R.id.imageView);
             yaerMovie = (TextView) itemView.findViewById(R.id.yearMovie);
             genreMovie = (TextView) itemView.findViewById(R.id.genreMovie);
+            itemView.setOnClickListener(this);
 
         }
+
 
         public void bindFilm(Movie movie) {
             mMovie = movie;
             yaerMovie.setText(mMovie.getYear());
             genreMovie.setText(mMovie.getGanre());
             mImage.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), mMovie.getPosterId()));
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onItemClick(mMovie);
         }
     }
 

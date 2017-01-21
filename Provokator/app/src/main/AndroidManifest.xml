@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ArsenalActivity"
+                  android:configChanges="orientation|screenSize"
                   android:label="@string/item_name"
                   android:theme="@style/AppTheme.NoActionBar"
                   android:parentActivityName="promo.kit.provokator.MainActivity" >

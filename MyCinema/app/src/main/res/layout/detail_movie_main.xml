@@ -7,7 +7,7 @@
         android:id="@+id/detailImage"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-
+        android:background="@color/colorBackground2"
         />
     <TextView
         android:id="@+id/text_year"
@@ -15,17 +15,17 @@
         android:layout_height="wrap_content"
         android:text="@string/year"
         android:layout_below="@id/detailImage"
-        android:padding="10dp"
+        android:padding="5dp"
         />
     <TextView
         android:id="@+id/year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/detailImage"
-        android:layout_toRightOf="@+id/text_year"
-        android:paddingLeft ="40dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_alignRight="@+id/detailImage"
+        android:paddingRight="70dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
 
         />
     <TextView
@@ -34,14 +34,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_year"
         android:text="@string/genre"
-        android:paddingLeft="10dp"/>
+        android:padding="5dp"/>
 
     <TextView
         android:id="@+id/genre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/year"
-        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingRight="70dp"
         android:layout_alignRight="@+id/year"/>
 
     <TextView
@@ -50,19 +52,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_genre"
         android:text="@string/time"
-        android:padding="10dp"/>
+        android:padding="5dp"/>
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/genre"
-        android:padding="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingRight="70dp"
         android:layout_alignRight="@+id/year"/>
 
     <TextView
         android:id="@+id/anons"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:padding="5dp"
         android:layout_below="@id/time_text"/>
 
 </RelativeLayout>

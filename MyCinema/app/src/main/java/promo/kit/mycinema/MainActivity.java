@@ -3,28 +3,35 @@ package promo.kit.mycinema;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import promo.kit.mycinema.adapter.MovieAdapter;
+import promo.kit.mycinema.model.Movie;
+import promo.kit.mycinema.network.NetData;
 
 import static android.app.PendingIntent.getActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Context mContext;
-    private FilmAdapter mFilmAdapter;
+    private MovieAdapter movieAdapter;
     private RecyclerView mRecyclerView;
     private List<Movie> sMovieList;
     private GridLayoutManager  vertikalLayout;
     private LinearLayoutManager  horizontLayout;
+    private static final String TAG = "MainActivity";
+
 
     private int mLayoutPosition;
 
@@ -33,32 +40,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
 
-
         createMovieList();
         mContext = getApplicationContext();
-
 
         vertikalLayout = new GridLayoutManager(this, 2);
         horizontLayout = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
-
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(vertikalLayout);
 
-        mFilmAdapter = new FilmAdapter(sMovieList);
-        mRecyclerView.setAdapter(mFilmAdapter);
+        movieAdapter = new MovieAdapter(sMovieList);
+        mRecyclerView.setAdapter(movieAdapter);
 
-        mFilmAdapter.setOnItemClickListener(new FilmAdapter.OnItemClickListener() {
+        new NetDateTask().execute();
+
+        movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View itemView, int position) {
-                Intent intent = new Intent(MainActivity.this, DetailsMovie.class);
-                startActivity(intent);
+            public void onItemClick(Movie movie) {
+                Intent i = new Intent(MainActivity.this, DetailsMovie.class);
+                i.putExtra("id", movie.getPosterId());
+                i.putExtra("id2", movie.getYear());
+                i.putExtra("id3", movie.getGanre());
+                i.putExtra("id4", movie.getTime());
+                i.putExtra("id5", movie.getDetail());
+
+                startActivity(i);
             }
         });
     }
-
-
-
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -80,6 +89,15 @@ public class MainActivity extends AppCompatActivity {
         sMovieList.add(new Movie(R.drawable.sparta,  "2015", "Боевик", "2 часа 35 минут","Кинуха про войнуху в спарте"));
         sMovieList.add(new Movie(R.drawable.star,  "2016", "Фантастика", "2 часа 40 минут","Продолжение саги Звездные войны"));
 
+    }
+
+    private class NetDateTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            new NetData().netItems();
+            return null;
+        }
     }
 
 

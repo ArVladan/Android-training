@@ -15,25 +15,25 @@ import java.util.List;
  */
 
 public class DetailsMovie extends AppCompatActivity {
-    private List<Movie> sMovieList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_movie_main);
-        Intent i = getIntent();
-        Movie movie = (Movie) i.getSerializableExtra("desc");
+        Bundle b = getIntent().getExtras();
         ImageView poster = (ImageView) findViewById(R.id.detailImage);
-        poster.setImageBitmap(BitmapFactory.decodeResource(poster.getResources(), movie.getPosterId()));
+        poster.setImageDrawable(getResources().getDrawable(b.getInt("id")));
         TextView textYear = (TextView) findViewById(R.id.year);
-        textYear.setText(movie.getYear());
+        textYear.setText(b.getString("id2"));
         TextView textGenre = (TextView) findViewById(R.id.genre);
-        textGenre.setText(movie.getGanre());
+        textGenre.setText(b.getString("id3"));
         TextView textTime = (TextView) findViewById(R.id.time);
-        textTime.setText(movie.getTime());
+        textTime.setText(b.getString("id4"));
         TextView textDetail = (TextView) findViewById(R.id.anons);
-        textDetail.setText(movie.getDetail());
-
+        textDetail.setText(b.getString("id5"));
 
     }
+
+
 }

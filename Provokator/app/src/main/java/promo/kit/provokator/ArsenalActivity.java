@@ -1,6 +1,7 @@
 package promo.kit.provokator;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -20,6 +21,9 @@ public class ArsenalActivity extends AppCompatActivity {
     private ArsAdapter mArsAdapter;
     private RecyclerView mRecyclerView;
     private List<Arsenal> mArsenalList;
+    private GridLayoutManager  vertikalLayout;
+    private GridLayoutManager  horizontLayout;
+
 
 
     @Override
@@ -31,15 +35,24 @@ public class ArsenalActivity extends AppCompatActivity {
 
         createArsenalList();
 
-        RecyclerView.LayoutManager layoutManager;
-        layoutManager = new GridLayoutManager(mContext, 2);
+        vertikalLayout = new GridLayoutManager(this, 2);
+        horizontLayout = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle);
-        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(vertikalLayout);
 
         mArsAdapter = new ArsAdapter(mArsenalList);
         mRecyclerView.setAdapter(mArsAdapter);
 
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mRecyclerView.setLayoutManager(horizontLayout);
+        }else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            mRecyclerView.setLayoutManager(vertikalLayout);
+        }
     }
     private void createArsenalList() {
         mArsenalList = new ArrayList<>();

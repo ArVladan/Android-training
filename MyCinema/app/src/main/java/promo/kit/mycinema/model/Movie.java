@@ -1,4 +1,4 @@
-package promo.kit.mycinema;
+package promo.kit.mycinema.model;
 
 import java.io.Serializable;
 
