@@ -8,7 +8,7 @@ import java.util.List;
 public class MovieData {
 
     private int page;
-    private List<Result> results = null;
+    private List<Movie> mMovieMovies = null;
     private int totalResults;
     private int totalPages;
 
@@ -21,15 +21,15 @@ public class MovieData {
 
     /**
      *
-     * @param results
+     * @param movieMovies
      * @param totalResults
      * @param page
      * @param totalPages
      */
-    public MovieData(int page, List<Result> results, int totalResults, int totalPages) {
+    public MovieData(int page, List<Movie> movieMovies, int totalResults, int totalPages) {
         super();
         this.page = page;
-        this.results = results;
+        this.mMovieMovies = movieMovies;
         this.totalResults = totalResults;
         this.totalPages = totalPages;
     }
@@ -42,12 +42,12 @@ public class MovieData {
         this.page = page;
     }
 
-    public List<Result> getResults() {
-        return results;
+    public List<Movie> getMovieMovies() {
+        return mMovieMovies;
     }
 
-    public void setResults(List<Result> results) {
-        this.results = results;
+    public void setMovieMovies(List<Movie> movieMovies) {
+        this.mMovieMovies = movieMovies;
     }
 
     public int getTotalResults() {

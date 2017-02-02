@@ -3,12 +3,19 @@ package promo.kit.mycinema.network;
 import android.net.Uri;
 import android.util.Log;
 
-import java.io.ByteArrayInputStream;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import promo.kit.mycinema.model.Movie;
 
 /**
  * Created by Влад on 15.01.17.
@@ -37,17 +44,44 @@ public class NetData {
             connection.disconnect();
         }
     }
+
     public String getUrlString(String urlSpec) throws IOException {
         return new String(getUrlBytes(urlSpec));
     }
-    public void netItems() {
+
+    public List<Movie> fetchItems() {
+        List<Movie> items = new ArrayList<>();
         try {
-            String url = Uri.parse("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b4b187ef65d78f5f798a4acb5f7b531e")
+            String url = Uri.parse("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b4b187ef65d78f5f798a4acb5f7b531e&language=ru")
                     .toString();
             String jsonString = getUrlString(url);
             Log.i(TAG, "Received JSON: " + jsonString);
+            JSONObject jsonBody = new JSONObject(jsonString);
+            parseItems(items, jsonBody);
+        }catch (JSONException je) {
+            Log.e(TAG, "Failed to parse JSON", je);
         } catch (IOException ioe) {
             Log.e(TAG, "Failed to net items: ", ioe);
         }
+
+        return items;
     }
+
+
+    private void parseItems(List<Movie> items, JSONObject jsonBody) throws IOException, JSONException {
+       // JSONObject movieJson = jsonBody.getJSONObject("results");
+       // JSONArray movieJsonArray = movieJson.getJSONArray("results");
+        JSONArray movieJsonArray = jsonBody.getJSONArray("results");
+        for(int i = 0; i < movieJsonArray.length(); i++) {
+            JSONObject movieJson = movieJsonArray.getJSONObject(i);
+            Movie item = new Movie();
+            item.setPosterPath(movieJson.getString("poster_path"));
+            item.setOriginalTitle(movieJson.getString("title"));
+            item.setReleaseDate(movieJson.getString("release_date"));
+            item.setPopularity(movieJson.getDouble("popularity"));
+            item.setOverview(movieJson.getString("overview"));
+            items.add(item);
+        }
+    }
+
 }
