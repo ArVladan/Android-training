@@ -1,8 +1,6 @@
 package promo.kit.metrotest;
 
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -11,21 +9,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
-
-import promo.kit.metrotest.model.Tab1;
-import promo.kit.metrotest.model.Tab2;
-import promo.kit.metrotest.model.Tab3;
-import promo.kit.metrotest.model.Tab4;
-import promo.kit.metrotest.model.Tab5;
-import promo.kit.metrotest.model.Tab6;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -44,15 +29,10 @@ public class QuestionActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private Tab1 fr;
 
-//    public static Tab1 newInstance(int sInt, String sString) {
-//        Tab1 tabFrag = new Tab1();
-//        Bundle arg = new Bundle();
-//        arg.putInt("sInt", sInt);
-//        arg.putString("sString", sString);
-//        tabFrag.setArguments(arg);
-//        return tabFrag;
-//    }
+
+
 
 
 
@@ -65,19 +45,16 @@ public class QuestionActivity extends AppCompatActivity {
 
         //data for Fragment tab1
 
-        b.putString("id", b.getString("id"));
-        Tab1 tab = new Tab1();
-        tab.setArguments(b);
 
 
+        String bilet = b.getString("id");
+        int number = b.getInt("id2");
 
-
-//        TextView bilet = (TextView) findViewById(R.id.answer_1);
-//        bilet.setText("" + b.getInt("id"));
-//        TextView outText;
 //
-//        outText = (TextView) this.findViewById(R.id.answer_1);
-//        outText.setMovementMethod(new ScrollingMovementMethod());
+//        //tab.newInstance(b.getString("id"), b.getInt("id2"));
+        fr = Tab1.newInstance(bilet, number);
+
+
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -93,9 +70,10 @@ public class QuestionActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-
-
     }
+
+
+
 
 
     @Override
@@ -173,17 +151,17 @@ public class QuestionActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Вопрос 1";
+                    return "В 1";
                 case 1:
-                    return "Вопрос 2";
+                    return "В 2";
                 case 2:
-                    return "Вопрос 3";
+                    return "В 3";
                 case 3:
-                    return "Вопрос 4";
+                    return "В 4";
                 case 4:
-                    return "Вопрос 5";
+                    return "В 5";
                 case 5:
-                    return "Вопрос 6";
+                    return "В 6";
                 default:
                     return null;
 

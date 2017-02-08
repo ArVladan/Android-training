@@ -1,4 +1,4 @@
-package promo.kit.metrotest.model;
+package promo.kit.metrotest;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
