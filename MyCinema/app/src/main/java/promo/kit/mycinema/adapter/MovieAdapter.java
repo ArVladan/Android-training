@@ -85,7 +85,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
             listener.onItemClick(mMovie);
         }
 
-//        public void
+
     }
 
 

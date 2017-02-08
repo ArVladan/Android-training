@@ -4,6 +4,8 @@ package promo.kit.mycinema.model;
  * Created by Влад on 15.01.17. This class created by site generation
  */
 
+import android.database.Cursor;
+
 import java.util.List;
 
 public class Movie {
@@ -81,6 +83,17 @@ public class Movie {
         this.voteCount = voteCount;
         this.video = video;
         this.voteAverage = voteAverage;
+    }
+
+    public static Movie getItemFromCursor(Cursor c) {
+        Movie item = new Movie();
+        item.id = c.getInt(c.getColumnIndex(Movie.KEY_ID));
+        item.title = c.getString(c.getColumnIndex(Movie.KEY_TITLE));
+        item.overview = c.getString(c.getColumnIndex(Movie.KEY_OVERVIEW));
+        item.posterPath = c.getString(c.getColumnIndex(Movie.KEY_POSTER_PATH));
+        item.popularity = c.getDouble(c.getColumnIndex(Movie.KEY_RATE));
+
+        return item;
     }
 
     public String getPosterPath() {

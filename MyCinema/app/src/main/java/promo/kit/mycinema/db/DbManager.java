@@ -2,6 +2,7 @@ package promo.kit.mycinema.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.io.IOException;
@@ -43,13 +44,32 @@ public class DbManager implements MovieDAO<Movie> {
     @Override
     public boolean delete(Movie movie) {
         SQLiteDatabase db = dbHalper.getWritableDatabase();
-        String[] whereArgs = {String.valueOf(Movie.id)};
-        return false;
+        String[] whereArgs = {String.valueOf(movie.id)};
+        int rows = db.delete(Movie.TABLE_MOVIE, Movie.KEY_ID,
+                whereArgs);
+        db.close();
+
+        return rows > 0;
     }
 
     @Override
     public Movie get(int id) {
-        return null;
+        SQLiteDatabase db = dbHalper.getWritableDatabase();
+        String[] whereArgs = {String.valueOf(id)};
+        Cursor c = db.query(Movie.TABLE_MOVIE,
+                Movie.projection,
+                Movie.KEY_ID + " = ? ",
+                whereArgs,
+                null,
+                null,
+                null);
+
+        Movie item = null;
+        while (c != null && c.moveToFirst()) {
+            item = Movie.getItemFromCursor(c);
+        }
+
+        return item;
     }
 
     @Override
