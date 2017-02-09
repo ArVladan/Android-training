@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import promo.kit.metrotest.R;
-
-public class QuestFive extends Fragment {
+public class QThreeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab_5, container, false);
+        View rootView = inflater.inflate(R.layout.answer_three, container, false);
 
         return rootView;
     }

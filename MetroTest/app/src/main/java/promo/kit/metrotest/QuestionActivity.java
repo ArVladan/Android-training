@@ -29,15 +29,8 @@ public class QuestionActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private QOneFragment fr;
 
-//    public static QuestOne newInstance(int sInt, String sString) {
-//        QuestOne tabFrag = new QuestOne();
-//        Bundle arg = new Bundle();
-//        arg.putInt("sInt", sInt);
-//        arg.putString("sString", sString);
-//        tabFrag.setArguments(arg);
-//        return tabFrag;
-//    }
 
 
 
@@ -50,21 +43,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         //data for Fragment tab1
 
-        QuestOne fr = QuestOne.newInstance(b.getInt("id2"), b.getString("id"));
-
-//        b.putString("id", b.getString("id"));
-//        QuestOne tab = new QuestOne();
-//        tab.setArguments(b);
-
-
-
-
-//        TextView bilet = (TextView) findViewById(R.id.answer_1);
-//        bilet.setText("" + b.getInt("id"));
-//        TextView outText;
-//
-//        outText = (TextView) this.findViewById(R.id.answer_1);
-//        outText.setMovementMethod(new ScrollingMovementMethod());
+        //QOneFragment fr = QOneFragment.newInstance(b.getInt("id2"), b.getString("id"));
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -79,8 +58,6 @@ public class QuestionActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-
 
     }
 
@@ -125,25 +102,28 @@ public class QuestionActivity extends AppCompatActivity {
             //Returning the current tabs
             switch (position) {
 
-                case 0:
 
-                    QuestOne questOne = new QuestOne();
-                    return questOne;
+                case 0:
+                    Bundle b = getIntent().getExtras();
+                    QOneFragment fr = QOneFragment.newInstance(b.getInt("id2"), b.getString("id"));
+
+                    return fr;
                 case 1:
-                    QuestTwo questTwo = new QuestTwo();
-                    return questTwo;
+                    Bundle b1 = getIntent().getExtras();
+                    QTwoFragment frTwo = QTwoFragment.newInstance(b1.getInt("id2"), b1.getString("id"));;
+                    return frTwo;
                 case 2:
-                    QuestThree questThree = new QuestThree();
-                    return questThree;
+                    QThreeFragment qThreeFragment = new QThreeFragment();
+                    return qThreeFragment;
                 case 3:
-                    QuestFour questFour = new QuestFour();
-                    return questFour;
+                    QFourFragment qFourFragment = new QFourFragment();
+                    return qFourFragment;
                 case 4:
-                    QuestFive questFive = new QuestFive();
-                    return questFive;
+                    QFiveFragment qFiveFragment = new QFiveFragment();
+                    return qFiveFragment;
                 case 5:
-                    QuestSix questSix = new QuestSix();
-                    return questSix;
+                    QSixFragment qSixFragment = new QSixFragment();
+                    return qSixFragment;
                 default:
                     return null;
 

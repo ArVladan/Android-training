@@ -1,24 +1,21 @@
 package promo.kit.metrotest.adapter;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import promo.kit.metrotest.R;
 import promo.kit.metrotest.model.ModelItem;
 
 
-public class BiletAdapter extends RecyclerView.Adapter<BiletAdapter.ViewHolder>{
+public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder>{
     private List<ModelItem> bilet;
 
-    public BiletAdapter(List<ModelItem> listBilet) {
+    public TicketAdapter(List<ModelItem> listBilet) {
         bilet = listBilet;
     }
 
