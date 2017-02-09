@@ -29,9 +29,13 @@ public class QuestionActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+<<<<<<< HEAD
     private Tab1 fr;
 
 
+=======
+    private QOneFragment fr;
+>>>>>>> refs/remotes/origin/master
 
 
 
@@ -45,6 +49,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         //data for Fragment tab1
 
+<<<<<<< HEAD
 
 
         String bilet = b.getString("id");
@@ -55,6 +60,9 @@ public class QuestionActivity extends AppCompatActivity {
         fr = Tab1.newInstance(bilet, number);
 
 
+=======
+        //QOneFragment fr = QOneFragment.newInstance(b.getInt("id2"), b.getString("id"));
+>>>>>>> refs/remotes/origin/master
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -71,9 +79,12 @@ public class QuestionActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
     }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> refs/remotes/origin/master
 
 
     @Override
@@ -116,25 +127,28 @@ public class QuestionActivity extends AppCompatActivity {
             //Returning the current tabs
             switch (position) {
 
-                case 0:
 
-                    Tab1 tab1 = new Tab1();
-                    return tab1;
+                case 0:
+                    Bundle b = getIntent().getExtras();
+                    QOneFragment fr = QOneFragment.newInstance(b.getInt("id2"), b.getString("id"));
+
+                    return fr;
                 case 1:
-                    Tab2 tab2 = new Tab2();
-                    return tab2;
+                    Bundle b1 = getIntent().getExtras();
+                    QTwoFragment frTwo = QTwoFragment.newInstance(b1.getInt("id2"), b1.getString("id"));;
+                    return frTwo;
                 case 2:
-                    Tab3 tab3 = new Tab3();
-                    return tab3;
+                    QThreeFragment qThreeFragment = new QThreeFragment();
+                    return qThreeFragment;
                 case 3:
-                    Tab4 tab4 = new Tab4();
-                    return tab4;
+                    QFourFragment qFourFragment = new QFourFragment();
+                    return qFourFragment;
                 case 4:
-                    Tab5 tab5 = new Tab5();
-                    return tab5;
+                    QFiveFragment qFiveFragment = new QFiveFragment();
+                    return qFiveFragment;
                 case 5:
-                    Tab6 tab6 = new Tab6();
-                    return tab6;
+                    QSixFragment qSixFragment = new QSixFragment();
+                    return qSixFragment;
                 default:
                     return null;
 
