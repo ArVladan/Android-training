@@ -1,8 +1,6 @@
 package promo.kit.metrotest;
 
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -11,21 +9,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
-
-import promo.kit.metrotest.model.Tab1;
-import promo.kit.metrotest.model.Tab2;
-import promo.kit.metrotest.model.Tab3;
-import promo.kit.metrotest.model.Tab4;
-import promo.kit.metrotest.model.Tab5;
-import promo.kit.metrotest.model.Tab6;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -45,8 +30,8 @@ public class QuestionActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
-//    public static Tab1 newInstance(int sInt, String sString) {
-//        Tab1 tabFrag = new Tab1();
+//    public static QuestOne newInstance(int sInt, String sString) {
+//        QuestOne tabFrag = new QuestOne();
 //        Bundle arg = new Bundle();
 //        arg.putInt("sInt", sInt);
 //        arg.putString("sString", sString);
@@ -65,9 +50,11 @@ public class QuestionActivity extends AppCompatActivity {
 
         //data for Fragment tab1
 
-        b.putString("id", b.getString("id"));
-        Tab1 tab = new Tab1();
-        tab.setArguments(b);
+        QuestOne fr = QuestOne.newInstance(b.getInt("id2"), b.getString("id"));
+
+//        b.putString("id", b.getString("id"));
+//        QuestOne tab = new QuestOne();
+//        tab.setArguments(b);
 
 
 
@@ -140,23 +127,23 @@ public class QuestionActivity extends AppCompatActivity {
 
                 case 0:
 
-                    Tab1 tab1 = new Tab1();
-                    return tab1;
+                    QuestOne questOne = new QuestOne();
+                    return questOne;
                 case 1:
-                    Tab2 tab2 = new Tab2();
-                    return tab2;
+                    QuestTwo questTwo = new QuestTwo();
+                    return questTwo;
                 case 2:
-                    Tab3 tab3 = new Tab3();
-                    return tab3;
+                    QuestThree questThree = new QuestThree();
+                    return questThree;
                 case 3:
-                    Tab4 tab4 = new Tab4();
-                    return tab4;
+                    QuestFour questFour = new QuestFour();
+                    return questFour;
                 case 4:
-                    Tab5 tab5 = new Tab5();
-                    return tab5;
+                    QuestFive questFive = new QuestFive();
+                    return questFive;
                 case 5:
-                    Tab6 tab6 = new Tab6();
-                    return tab6;
+                    QuestSix questSix = new QuestSix();
+                    return questSix;
                 default:
                     return null;
 

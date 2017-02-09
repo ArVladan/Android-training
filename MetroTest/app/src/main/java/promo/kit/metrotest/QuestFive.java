@@ -1,4 +1,4 @@
-package promo.kit.metrotest.model;
+package promo.kit.metrotest;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import promo.kit.metrotest.R;
 
-public class Tab5 extends Fragment {
+public class QuestFive extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

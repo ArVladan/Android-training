@@ -1,6 +1,5 @@
-package promo.kit.metrotest.model;
+package promo.kit.metrotest;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -9,18 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import promo.kit.metrotest.R;
+public class QuestOne extends Fragment {
 
-public class Tab1 extends Fragment {
+    private int sInt;
+    private String sString;
 
-//    public static Tab1 newInstance(int sInt, String sString) {
-//        Tab1 tabFrag = new Tab1();
-//        Bundle arg = new Bundle();
-//        arg.putInt("sInt", sInt);
-//        arg.putString("sString", sString);
-//        tabFrag.setArguments(arg);
-//        return tabFrag;
-//    }
+    public static QuestOne newInstance(int sInt, String sString) {
+        QuestOne tabFrag = new QuestOne();
+        Bundle arg = new Bundle();
+        arg.putInt("sInt", sInt);
+        arg.putString("sString", sString);
+        tabFrag.setArguments(arg);
+        return tabFrag;
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        int sInt = this.getArguments().getInt("sInt");
+        String sString = this.getArguments().getString("sString");
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,15 +40,10 @@ public class Tab1 extends Fragment {
         outText = (TextView) rootView.findViewById(R.id.answer_1);
         outText.setMovementMethod(new ScrollingMovementMethod());
 
-//        int sInt = getArguments().getInt("sInt", 0);
-//        String sString = getArguments().getString("sString", "");
-
         TextView bilet = (TextView) rootView.findViewById(R.id.section_1);
 
-        Bundle b = getArguments();
-        if (b != null) {
-            bilet.setText(b.getString("id", b.getString("id")));
-        }
+        bilet.setText(sString + sInt);
+
 
 
         return rootView;
