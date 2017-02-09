@@ -29,7 +29,13 @@ public class QuestionActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+<<<<<<< HEAD
+    private Tab1 fr;
+
+
+=======
     private QOneFragment fr;
+>>>>>>> refs/remotes/origin/master
 
 
 
@@ -43,7 +49,20 @@ public class QuestionActivity extends AppCompatActivity {
 
         //data for Fragment tab1
 
+<<<<<<< HEAD
+
+
+        String bilet = b.getString("id");
+        int number = b.getInt("id2");
+
+//
+//        //tab.newInstance(b.getString("id"), b.getInt("id2"));
+        fr = Tab1.newInstance(bilet, number);
+
+
+=======
         //QOneFragment fr = QOneFragment.newInstance(b.getInt("id2"), b.getString("id"));
+>>>>>>> refs/remotes/origin/master
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -60,6 +79,12 @@ public class QuestionActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
     }
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> refs/remotes/origin/master
 
 
     @Override
@@ -140,17 +165,17 @@ public class QuestionActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Вопрос 1";
+                    return "В 1";
                 case 1:
-                    return "Вопрос 2";
+                    return "В 2";
                 case 2:
-                    return "Вопрос 3";
+                    return "В 3";
                 case 3:
-                    return "Вопрос 4";
+                    return "В 4";
                 case 4:
-                    return "Вопрос 5";
+                    return "В 5";
                 case 5:
-                    return "Вопрос 6";
+                    return "В 6";
                 default:
                     return null;
 

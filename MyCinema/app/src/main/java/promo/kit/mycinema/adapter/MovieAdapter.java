@@ -1,7 +1,6 @@
 package promo.kit.mycinema.adapter;
 
 
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,12 @@ import promo.kit.mycinema.model.Movie;
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
+    //    private List<MovieOld> movieList;
     private List<Movie> movieList;
+
+    //    public MovieAdapter(List<MovieOld> movies) {
+//        movieList = movies;
+//    }
     public MovieAdapter(List<Movie> movies) {
         movieList = movies;
     }
@@ -33,7 +37,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
 
     @Override
     public int getItemCount() {
-        return movieList.size();
+        return movieList == null ? 0 : movieList.size();
     }
 
     @Override
@@ -41,13 +45,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
         Movie movie = movieList.get(position);
         holder.bindFilm(movie);
     }
+
     public static OnItemClickListener listener;
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(Movie movie);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
@@ -67,17 +72,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
         }
 
 
-        public void bindFilm(Movie movie) {
-            mMovie = movie;
-            yaerMovie.setText(mMovie.getYear());
-            genreMovie.setText(mMovie.getGanre());
-            mImage.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), mMovie.getPosterId()));
+        public void bindFilm(Movie item) {
+            mMovie = item;
+            yaerMovie.setText(mMovie.getReleaseDate());
+            genreMovie.setText((int) mMovie.getPopularity());
+
+            //       mImage.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), mMovie.getPosterId()));
         }
 
         @Override
         public void onClick(View v) {
             listener.onItemClick(mMovie);
         }
+
+
     }
 
 

@@ -7,6 +7,6 @@
     <string name="time">Длительность</string>
     <string name="page">Страница</string>
     <string name="total_pages">Подробная страница</string>
-    <string name="results">Результат</string>
+    <string name="movieMovies">Результат</string>
     <string name="total_results">Подробно</string>
 </resources>
