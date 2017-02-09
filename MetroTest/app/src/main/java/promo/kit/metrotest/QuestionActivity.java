@@ -135,11 +135,12 @@ public class QuestionActivity extends AppCompatActivity {
                     return fr;
                 case 1:
                     Bundle b1 = getIntent().getExtras();
-                    QTwoFragment frTwo = QTwoFragment.newInstance(b1.getInt("id2"), b1.getString("id"));;
+                    QTwoFragment frTwo = QTwoFragment.newInstance(b1.getInt("id2"), b1.getString("id"));
                     return frTwo;
                 case 2:
-                    QThreeFragment qThreeFragment = new QThreeFragment();
-                    return qThreeFragment;
+                    Bundle b2 = getIntent().getExtras();
+                    QThreeFragment frThree = QThreeFragment.newInstance(b2.getInt("id2"), b2.getString("id"));
+                    return frThree;
                 case 3:
                     QFourFragment qFourFragment = new QFourFragment();
                     return qFourFragment;
