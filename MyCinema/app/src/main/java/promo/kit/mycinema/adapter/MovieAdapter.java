@@ -46,7 +46,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
                     .load(movie.getFullPosterPath(Movie.WIDTH_500))
                     .placeholder(R.drawable.image_placeholder)
                     .into(holder.poster);
-       // holder.bindFilm(movie);
+        holder.bindFilm(movie);
     }
 
     public static OnItemClickListener listener;
@@ -61,23 +61,23 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
 
     public class MovieHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView poster;
-        private TextView yaerMovie;
-        private TextView genreMovie;
+        private TextView releeseData;
+        private TextView popularity;
         private Movie mMovie;
+
 
         public MovieHolder(final View itemView) {
             super(itemView);
             poster = (ImageView) itemView.findViewById(R.id.imageView);
-//            mImage = (ImageView) itemView.findViewById(R.id.imageView);
-//            yaerMovie = (TextView) itemView.findViewById(R.id.releese_data);
-//            genreMovie = (TextView) itemView.findViewById(R.id.genreMovie);
+            releeseData = (TextView) itemView.findViewById(R.id.releese_data);
+            popularity = (TextView) itemView.findViewById(R.id.genreMovie);
             itemView.setOnClickListener(this);
         }
 
         public void bindFilm(Movie item) {
             mMovie = item;
-            yaerMovie.setText(mMovie.getReleaseDate());
-            genreMovie.setText((int) mMovie.getPopularity());
+            releeseData.setText(mMovie.getReleaseDate());
+            popularity.setText((int) mMovie.getPopularity());
 
             //       mImage.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), mMovie.getPosterId()));
         }
