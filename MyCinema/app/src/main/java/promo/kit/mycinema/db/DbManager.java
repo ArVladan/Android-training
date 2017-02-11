@@ -4,8 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import promo.kit.mycinema.interfaces.MovieDAO;
@@ -74,11 +76,46 @@ public class DbManager implements MovieDAO<Movie> {
 
     @Override
     public List<Movie> getAll() {
-        return null;
+        SQLiteDatabase db = dbHalper.getWritableDatabase();
+        Cursor c = db.query(Movie.TABLE_MOVIE,
+                Movie.projection,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        if (c == null)
+            return null;
+
+        List<Movie> items = new ArrayList<>();
+        if (c.moveToFirst()) {
+            do {
+                Movie item = Movie.getItemFromCursor(c);
+                items.add(item);
+            } while (c.moveToNext());
+        }
+
+        c.close();
+
+        return items;
     }
 
-    @Override
-    public void saveAll(List<Movie> movie) {
 
+    @Override
+    public void saveAll(List<Movie> movies) {
+        SQLiteDatabase db = dbHalper.getWritableDatabase();
+
+        for (Movie movie: movies) {
+            ContentValues cv = new ContentValues();
+            cv.put(Movie.KEY_TITLE, movie.title);
+            cv.put(Movie.KEY_OVERVIEW, movie.overview);
+            cv.put(Movie.KEY_RATE, movie.popularity);
+            cv.put(Movie.KEY_POSTER_PATH, movie.posterPath);
+            long id = db.insert(Movie.TABLE_MOVIE, null, cv);
+            Log.d(LOG_TAG, "Inserted id=" + id);
+        }
+
+        db.close();
     }
 }

@@ -6,14 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import promo.kit.mycinema.model.Movie;
 
-/**
- * Created by Влад on 27.01.17.
- */
-
 public class MovieOpenHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "movie_db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 3;
 
     public MovieOpenHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -31,8 +27,6 @@ public class MovieOpenHelper extends SQLiteOpenHelper {
                 Movie.KEY_RELEASE_DATE + " TEXT " +
                 ");"
         );
-
-
     }
 
     @Override

@@ -9,6 +9,9 @@ import android.database.Cursor;
 import java.util.List;
 
 public class Movie {
+    public static final String WIDTH_342 = "w342";
+    public static final String WIDTH_500 = "w500";
+
     public static final String KEY_TITLE = "original_title";
     public static final String KEY_POSTER_PATH = "poster_path";
     public static final String KEY_OVERVIEW = "overview";
@@ -16,14 +19,15 @@ public class Movie {
     public static final String KEY_RELEASE_DATE = "release_date";
     public static final String KEY_ID = "id";
     public static final String TABLE_MOVIE = "movies";
+    private static final String URL_IMAGE_TMDB_DEFAULT = "http://image.tmdb.org/t/p/";
+
 
     public static String[] projection = {
             KEY_ID,
             KEY_TITLE,
             KEY_OVERVIEW,
             KEY_POSTER_PATH,
-            KEY_RATE,
-            KEY_RELEASE_DATE
+            KEY_RATE
     };
 
 
@@ -43,30 +47,10 @@ public class Movie {
     public boolean video;
     public int voteAverage;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
+
     public Movie() {
     }
 
-    /**
-     *
-     * @param id
-     * @param genreIds
-     * @param title
-     * @param releaseDate
-     * @param overview
-     * @param posterPath
-     * @param originalTitle
-     * @param voteAverage
-     * @param originalLanguage
-     * @param adult
-     * @param backdropPath
-     * @param voteCount
-     * @param video
-     * @param popularity
-     */
     public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, int id, String originalTitle, String originalLanguage, String title, String backdropPath, double popularity, int voteCount, boolean video, int voteAverage) {
         super();
         this.posterPath = posterPath;
@@ -206,6 +190,15 @@ public class Movie {
 
     public void setVoteAverage(int voteAverage) {
         this.voteAverage = voteAverage;
+    }
+
+    public String getFullPosterPath(String preferedWidth) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(URL_IMAGE_TMDB_DEFAULT);
+        sb.append(preferedWidth);
+        sb.append(posterPath);
+
+        return sb.toString();
     }
 
 
