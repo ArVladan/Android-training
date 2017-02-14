@@ -1,4 +1,4 @@
-package promo.kit.mycinema.db;
+package promo.kit.mycinema.data.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,7 +9,7 @@ import promo.kit.mycinema.model.Movie;
 public class MovieOpenHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "movie_db";
-    private static final int DB_VERSION = 3;
+    private static final int DB_VERSION = 6;
 
     public MovieOpenHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -20,6 +20,7 @@ public class MovieOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + Movie.TABLE_MOVIE + " (" +
                 Movie.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                Movie.KEY_ID_MOVIE + " INT, " +
                 Movie.KEY_TITLE + " TEXT, " +
                 Movie.KEY_OVERVIEW + " TEXT, " +
                 Movie.KEY_POSTER_PATH + " TEXT, " +

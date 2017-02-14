@@ -18,6 +18,7 @@ public class Movie {
     public static final String KEY_RATE = "vote_average";
     public static final String KEY_RELEASE_DATE = "release_date";
     public static final String KEY_ID = "id";
+    public static final String KEY_ID_MOVIE = "id_movie";
     public static final String TABLE_MOVIE = "movies";
     private static final String URL_IMAGE_TMDB_DEFAULT = "http://image.tmdb.org/t/p/";
 
@@ -46,12 +47,13 @@ public class Movie {
     public int voteCount;
     public boolean video;
     public int voteAverage;
+    private int id_movie;
 
 
     public Movie() {
     }
 
-    public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, int id, String originalTitle, String originalLanguage, String title, String backdropPath, double popularity, int voteCount, boolean video, int voteAverage) {
+    public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, int id, int id_movie, String originalTitle, String originalLanguage, String title, String backdropPath, double popularity, int voteCount, boolean video, int voteAverage) {
         super();
         this.posterPath = posterPath;
         this.adult = adult;
@@ -59,6 +61,7 @@ public class Movie {
         this.releaseDate = releaseDate;
         this.genreIds = genreIds;
         this.id = id;
+        this.id_movie = id_movie;
         this.originalTitle = originalTitle;
         this.originalLanguage = originalLanguage;
         this.title = title;
@@ -72,6 +75,7 @@ public class Movie {
     public static Movie getItemFromCursor(Cursor c) {
         Movie item = new Movie();
         item.id = c.getInt(c.getColumnIndex(Movie.KEY_ID));
+        item.id_movie = c.getInt(c.getColumnIndex(Movie.KEY_ID_MOVIE));
         item.title = c.getString(c.getColumnIndex(Movie.KEY_TITLE));
         item.overview = c.getString(c.getColumnIndex(Movie.KEY_OVERVIEW));
         item.posterPath = c.getString(c.getColumnIndex(Movie.KEY_POSTER_PATH));

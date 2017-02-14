@@ -2,6 +2,7 @@ package promo.kit.mycinema.adapter;
 
 
 import android.content.Context;
+import android.content.pm.ProviderInfo;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.security.PrivateKey;
 import java.util.List;
 
 import it.sephiroth.android.library.picasso.Picasso;
@@ -46,6 +48,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
                     .load(movie.getFullPosterPath(Movie.WIDTH_500))
                     .placeholder(R.drawable.image_placeholder)
                     .into(holder.poster);
+
         holder.bindFilm(movie);
     }
 
@@ -61,23 +64,26 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
 
     public class MovieHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView poster;
-        private TextView releeseData;
+        private TextView releaseData;
         private TextView popularity;
         private Movie mMovie;
+        private int id;
 
 
         public MovieHolder(final View itemView) {
             super(itemView);
             poster = (ImageView) itemView.findViewById(R.id.imageView);
-            releeseData = (TextView) itemView.findViewById(R.id.releese_data);
+            releaseData = (TextView) itemView.findViewById(R.id.release_data);
             popularity = (TextView) itemView.findViewById(R.id.genreMovie);
+
             itemView.setOnClickListener(this);
         }
 
         public void bindFilm(Movie item) {
             mMovie = item;
-            releeseData.setText(mMovie.getReleaseDate());
-            popularity.setText((int) mMovie.getPopularity());
+            id = item.getId();
+            releaseData.setText("Релиз: " + mMovie.getReleaseDate());
+          //  popularity.setText((int) mMovie.getPopularity());
 
             //       mImage.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), mMovie.getPosterId()));
         }

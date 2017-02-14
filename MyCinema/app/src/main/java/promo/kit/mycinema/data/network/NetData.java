@@ -1,4 +1,4 @@
-package promo.kit.mycinema.network;
+package promo.kit.mycinema.data.network;
 
 import android.net.Uri;
 import android.util.Log;
@@ -75,6 +75,7 @@ public class NetData {
         for(int i = 0; i < movieJsonArray.length(); i++) {
             JSONObject movieJson = movieJsonArray.getJSONObject(i);
             Movie item = new Movie();
+            item.setId(movieJson.getInt("id"));
             item.setPosterPath(movieJson.getString("poster_path"));
             item.setOriginalTitle(movieJson.getString("title"));
             item.setReleaseDate(movieJson.getString("release_date"));

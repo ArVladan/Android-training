@@ -1,4 +1,4 @@
-package promo.kit.mycinema.db;
+package promo.kit.mycinema.data.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -32,6 +32,7 @@ public class DbManager implements MovieDAO<Movie> {
         ContentValues cv = new ContentValues();
         cv.put(Movie.KEY_TITLE, movie.title);
         cv.put(Movie.KEY_ID, movie.id);
+        cv.put(Movie.KEY_ID_MOVIE, movie.id);
         cv.put(Movie.KEY_OVERVIEW, movie.overview);
         cv.put(Movie.KEY_POSTER_PATH, movie.posterPath);
         cv.put(Movie.KEY_RATE, movie.popularity);
@@ -54,8 +55,20 @@ public class DbManager implements MovieDAO<Movie> {
         return rows > 0;
     }
 
+
+    public Cursor getDbId(int id) {
+        SQLiteDatabase db=dbHalper.getReadableDatabase();
+        Cursor c=db.query(Movie.TABLE_MOVIE, new String[]{String.valueOf(id)},null,
+                null,null,null,null);
+        db.close();
+
+        return c;
+    }
+
+
+
     @Override
-    public Movie get(int id) {
+    public Movie get(Cursor id) {
         SQLiteDatabase db = dbHalper.getWritableDatabase();
         String[] whereArgs = {String.valueOf(id)};
         Cursor c = db.query(Movie.TABLE_MOVIE,
@@ -108,6 +121,7 @@ public class DbManager implements MovieDAO<Movie> {
 
         for (Movie movie: movies) {
             ContentValues cv = new ContentValues();
+            cv.put(Movie.KEY_ID_MOVIE, movie.id);
             cv.put(Movie.KEY_TITLE, movie.title);
             cv.put(Movie.KEY_OVERVIEW, movie.overview);
             cv.put(Movie.KEY_RATE, movie.popularity);

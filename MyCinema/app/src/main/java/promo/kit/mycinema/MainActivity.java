@@ -1,6 +1,7 @@
 package promo.kit.mycinema;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import promo.kit.mycinema.adapter.MovieAdapter;
-import promo.kit.mycinema.db.DbManager;
+import promo.kit.mycinema.data.network.NetData;
+import promo.kit.mycinema.data.db.DbManager;
 import promo.kit.mycinema.model.Movie;
-import promo.kit.mycinema.network.NetData;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -53,9 +54,18 @@ public class MainActivity extends AppCompatActivity {
                 movies.addAll(dbMovies);
                 adapter.notifyDataSetChanged();
             }
-        } else
-
-        new NetDateTask().execute();
+        } else {
+            new NetDateTask().execute();
+        }
+        adapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Movie movies) {
+                Intent i = new Intent(MainActivity.this, DetailsMovie.class);
+                int g = movies.getId();
+                i.putExtra("id", g);
+                startActivity(i);
+            }
+        });
     }
 
     public boolean isNetworkAvailable(final Context context) {
@@ -82,11 +92,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(List<Movie> movieMovies) {
-            super.onPostExecute(movieMovies);
+        protected void onPostExecute(List<Movie> movie) {
+            super.onPostExecute(movie);
+            onMovieAll(movie);
+        }
 
-            db.saveAll(movieMovies);
-            movies.addAll(movieMovies);
+        public void onMovieAll(List<Movie> movie) {
+            db.saveAll(movie);
+            movies.addAll(movie);
             adapter.notifyDataSetChanged();
         }
     }
