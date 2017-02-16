@@ -7,7 +7,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Result extends MovieGson {
+public class Movie extends MovieGson {
 
     @SerializedName("poster_path")
     @Expose
@@ -75,7 +75,7 @@ public class Result extends MovieGson {
      * No args constructor for use in serialization
      *
      */
-    public Result() {
+    public Movie() {
     }
 
     /**
@@ -95,7 +95,7 @@ public class Result extends MovieGson {
      * @param video
      * @param popularity
      */
-    public Result(String posterPath, Boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity, Integer voteCount, Boolean video, Float voteAverage) {
+    public Movie(String posterPath, Boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity, Integer voteCount, Boolean video, Float voteAverage) {
         super();
         this.posterPath = posterPath;
         this.adult = adult;
@@ -224,13 +224,13 @@ public class Result extends MovieGson {
     public void setVoteAverage(Float voteAverage) {
         this.voteAverage = voteAverage;
     }
-    public static Result getItemFromCursor(Cursor c) {
-        Result item = new Result();
-        item.id = c.getInt(c.getColumnIndex(Result.KEY_ID));
-        item.title = c.getString(c.getColumnIndex(Result.KEY_TITLE));
-        item.overview = c.getString(c.getColumnIndex(Result.KEY_OVERVIEW));
-        item.posterPath = c.getString(c.getColumnIndex(Result.KEY_POSTER_PATH));
-        item.popularity = c.getDouble(c.getColumnIndex(Result.KEY_RATE));
+    public static Movie getItemFromCursor(Cursor c) {
+        Movie item = new Movie();
+        item.id = c.getInt(c.getColumnIndex(Movie.KEY_ID));
+        item.title = c.getString(c.getColumnIndex(Movie.KEY_TITLE));
+        item.overview = c.getString(c.getColumnIndex(Movie.KEY_OVERVIEW));
+        item.posterPath = c.getString(c.getColumnIndex(Movie.KEY_POSTER_PATH));
+        item.popularity = c.getDouble(c.getColumnIndex(Movie.KEY_RATE));
 
         return item;
     }

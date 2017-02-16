@@ -16,14 +16,14 @@ import java.util.List;
 import promo.kit.mycinema.adapter.MovieAdapter;
 import promo.kit.mycinema.db.DbManager;
 
-import promo.kit.mycinema.model.Result;
+import promo.kit.mycinema.model.Movie;
 import promo.kit.mycinema.network.NetData;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private Context context;
     private RecyclerView rv;
-    private List<Result> movies;
+    private List<Movie> movies;
     private GridLayoutManager  vertikalLayout;
     private MovieAdapter adapter;
     private LinearLayoutManager  horizontLayout;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         db = new DbManager(context);
         if (!isNetworkAvailable(context)) {
-            List<Result> dbMovies = db.getAll();
+            List<Movie> dbMovies = db.getAll();
             if (dbMovies != null) {
                 movies.addAll(dbMovies);
                 adapter.notifyDataSetChanged();
@@ -75,20 +75,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    class NetDateTask extends AsyncTask<Void, Void, List<Result>> {
+    class NetDateTask extends AsyncTask<Void, Void, List<Movie>> {
 
         @Override
-        protected List<Result> doInBackground(Void... params) {
+        protected List<Movie> doInBackground(Void... params) {
             return new NetData().fetchItems();
         }
 
         @Override
-        protected void onPostExecute(List<Result> movies) {
+        protected void onPostExecute(List<Movie> movies) {
             super.onPostExecute(movies);
             onMovieAll(movies);
         }
 
-        protected void onMovieAll(List<Result> movie) {
+        protected void onMovieAll(List<Movie> movie) {
             db.saveAll(movie);
             movies.addAll(movie);
             adapter.notifyDataSetChanged();

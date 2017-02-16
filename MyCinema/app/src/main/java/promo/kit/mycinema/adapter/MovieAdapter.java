@@ -10,23 +10,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.xmlpull.v1.XmlPullParser;
-
 import java.util.List;
 
 import it.sephiroth.android.library.picasso.Picasso;
 import promo.kit.mycinema.R;
 
-import promo.kit.mycinema.model.Result;
+import promo.kit.mycinema.model.Movie;
 
 import static promo.kit.mycinema.R.layout.item;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
     //    private List<MovieOld> movies;
-    private List<Result> movies;
+    private List<Movie> movies;
     private Context context;
 
-    public  MovieAdapter(Context context, List<Result> movies) {
+    public  MovieAdapter(Context context, List<Movie> movies) {
         this.movies = movies;
         this.context = context;
     }
@@ -45,10 +43,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
 
     @Override
     public void onBindViewHolder(MovieHolder holder, int position) {
-        Result movie = movies.get(position);
-        if (!TextUtils.isEmpty(movie.getFullPosterPath(Result.WIDTH_500)))
+        Movie movie = movies.get(position);
+        if (!TextUtils.isEmpty(movie.getFullPosterPath(Movie.WIDTH_500)))
             Picasso.with(context)
-                    .load(movie.getFullPosterPath(Result.WIDTH_500))
+                    .load(movie.getFullPosterPath(Movie.WIDTH_500))
                     .placeholder(R.drawable.image_placeholder)
                     .into(holder.poster);
         holder.bindFilm(movie);
@@ -57,7 +55,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
     public static OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(Result movie);
+        void onItemClick(Movie movie);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -68,7 +66,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
         private ImageView poster;
         private TextView releeseData;
         private TextView popularity;
-        private Result mMovie;
+        private Movie mMovie;
 
 
         public MovieHolder(final View itemView) {
@@ -79,7 +77,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
             itemView.setOnClickListener(this);
         }
 
-        public void bindFilm(Result item) {
+        public void bindFilm(Movie item) {
             mMovie = item;
             releeseData.setText(mMovie.getReleaseDate());
            // popularity.setText((int) mMovie.getPopularity());

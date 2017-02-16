@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import promo.kit.mycinema.model.Result;
+import promo.kit.mycinema.model.Movie;
 
 /**
  * Created by Влад on 15.01.17.
@@ -53,8 +53,8 @@ public class NetData {
         return new String(getUrlBytes(urlSpec));
     }
 
-    public List<Result> fetchItems() {
-        List<Result> items = new ArrayList<>();
+    public List<Movie> fetchItems() {
+        List<Movie> items = new ArrayList<>();
         try {
             String url = Uri.parse("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b4b187ef65d78f5f798a4acb5f7b531e&language=ru")
                     .toString();
@@ -73,12 +73,12 @@ public class NetData {
     }
 
 
-    private void parseItems(List<Result> items, JSONObject jsonBody) throws IOException, JSONException {
+    private void parseItems(List<Movie> items, JSONObject jsonBody) throws IOException, JSONException {
         JSONArray movieJsonArray = jsonBody.getJSONArray("results");
         Gson gson = new Gson();
         for(int i = 0; i < movieJsonArray.length(); i++) {
             JSONObject movieJson = movieJsonArray.getJSONObject(i);
-            Result item = gson.fromJson(movieJson.toString(), Result.class);
+            Movie item = gson.fromJson(movieJson.toString(), Movie.class);
 
             items.add(item);
         }

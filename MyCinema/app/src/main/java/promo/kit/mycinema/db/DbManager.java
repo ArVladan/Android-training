@@ -12,10 +12,10 @@ import java.util.List;
 
 import promo.kit.mycinema.interfaces.MovieDAO;
 
-import promo.kit.mycinema.model.Result;
+import promo.kit.mycinema.model.Movie;
 
 
-public class DbManager implements MovieDAO<Result> {
+public class DbManager implements MovieDAO<Movie> {
 
     private static final String LOG_TAG = DbManager.class.getSimpleName();
     private MovieOpenHelper dbHalper;
@@ -25,27 +25,27 @@ public class DbManager implements MovieDAO<Result> {
     }
 
     @Override
-    public long save(Result movie) throws IOException {
+    public long save(Movie movie) throws IOException {
         SQLiteDatabase db = dbHalper.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(Result.KEY_TITLE, movie.title);
-        cv.put(Result.KEY_ID, movie.id);
-        cv.put(Result.KEY_OVERVIEW, movie.overview);
-        cv.put(Result.KEY_POSTER_PATH, movie.posterPath);
-        cv.put(Result.KEY_RATE, movie.popularity);
-        cv.put(Result.KEY_RELEASE_DATE, movie.releaseDate);
+        cv.put(Movie.KEY_TITLE, movie.title);
+        cv.put(Movie.KEY_ID, movie.id);
+        cv.put(Movie.KEY_OVERVIEW, movie.overview);
+        cv.put(Movie.KEY_POSTER_PATH, movie.posterPath);
+        cv.put(Movie.KEY_RATE, movie.popularity);
+        cv.put(Movie.KEY_RELEASE_DATE, movie.releaseDate);
 
-        long _id = db.insert(Result.TABLE_MOVIE, null, cv);
+        long _id = db.insert(Movie.TABLE_MOVIE, null, cv);
         db.close();
         return  _id;
 
     }
 
     @Override
-    public boolean delete(Result movie) {
+    public boolean delete(Movie movie) {
         SQLiteDatabase db = dbHalper.getWritableDatabase();
         String[] whereArgs = {String.valueOf(movie.id)};
-        int rows = db.delete(Result.TABLE_MOVIE, Result.KEY_ID,
+        int rows = db.delete(Movie.TABLE_MOVIE, Movie.KEY_ID,
                 whereArgs);
         db.close();
 
@@ -53,30 +53,30 @@ public class DbManager implements MovieDAO<Result> {
     }
 
     @Override
-    public Result get(int id) {
+    public Movie get(int id) {
         SQLiteDatabase db = dbHalper.getWritableDatabase();
         String[] whereArgs = {String.valueOf(id)};
-        Cursor c = db.query(Result.TABLE_MOVIE,
-                Result.projection,
-                Result.KEY_ID + " = ? ",
+        Cursor c = db.query(Movie.TABLE_MOVIE,
+                Movie.projection,
+                Movie.KEY_ID + " = ? ",
                 whereArgs,
                 null,
                 null,
                 null);
 
-        Result item = null;
+        Movie item = null;
         while (c != null && c.moveToFirst()) {
-            item = Result.getItemFromCursor(c);
+            item = Movie.getItemFromCursor(c);
         }
 
         return item;
     }
 
     @Override
-    public List<Result> getAll() {
+    public List<Movie> getAll() {
         SQLiteDatabase db = dbHalper.getWritableDatabase();
-        Cursor c = db.query(Result.TABLE_MOVIE,
-                Result.projection,
+        Cursor c = db.query(Movie.TABLE_MOVIE,
+                Movie.projection,
                 null,
                 null,
                 null,
@@ -86,10 +86,10 @@ public class DbManager implements MovieDAO<Result> {
         if (c == null)
             return null;
 
-        List<Result> items = new ArrayList<>();
+        List<Movie> items = new ArrayList<>();
         if (c.moveToFirst()) {
             do {
-                Result item = Result.getItemFromCursor(c);
+                Movie item = Movie.getItemFromCursor(c);
                 items.add(item);
             } while (c.moveToNext());
         }
@@ -100,15 +100,15 @@ public class DbManager implements MovieDAO<Result> {
     }
 
     @Override
-    public void saveAll(List<Result> movies) { SQLiteDatabase db = dbHalper.getWritableDatabase();
+    public void saveAll(List<Movie> movies) { SQLiteDatabase db = dbHalper.getWritableDatabase();
 
-        for (Result movie: movies) {
+        for (Movie movie: movies) {
             ContentValues cv = new ContentValues();
-            cv.put(Result.KEY_TITLE, movie.title);
-            cv.put(Result.KEY_OVERVIEW, movie.overview);
-            cv.put(Result.KEY_RATE, movie.popularity);
-            cv.put(Result.KEY_POSTER_PATH, movie.posterPath);
-            long id = db.insert(Result.TABLE_MOVIE, null, cv);
+            cv.put(Movie.KEY_TITLE, movie.title);
+            cv.put(Movie.KEY_OVERVIEW, movie.overview);
+            cv.put(Movie.KEY_RATE, movie.popularity);
+            cv.put(Movie.KEY_POSTER_PATH, movie.posterPath);
+            long id = db.insert(Movie.TABLE_MOVIE, null, cv);
             Log.d(LOG_TAG, "Inserted id=" + id);
         }
 
