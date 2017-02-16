@@ -50,7 +50,7 @@ public class Result extends MovieGson {
     private Boolean video;
     @SerializedName("vote_average")
     @Expose
-    private Double voteAverage;
+    private Float voteAverage;
 
     public static final String WIDTH_342 = "w342";
     public static final String WIDTH_500 = "w500";
@@ -95,7 +95,7 @@ public class Result extends MovieGson {
      * @param video
      * @param popularity
      */
-    public Result(String posterPath, Boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity, Integer voteCount, Boolean video, Double voteAverage) {
+    public Result(String posterPath, Boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity, Integer voteCount, Boolean video, Float voteAverage) {
         super();
         this.posterPath = posterPath;
         this.adult = adult;
@@ -217,11 +217,11 @@ public class Result extends MovieGson {
         this.video = video;
     }
 
-    public Double getVoteAverage() {
+    public Float getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(Double voteAverage) {
+    public void setVoteAverage(Float voteAverage) {
         this.voteAverage = voteAverage;
     }
     public static Result getItemFromCursor(Cursor c) {
