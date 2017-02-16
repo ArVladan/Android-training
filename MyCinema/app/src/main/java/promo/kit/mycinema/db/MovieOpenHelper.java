@@ -9,7 +9,7 @@ import promo.kit.mycinema.model.Movie;
 public class MovieOpenHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "movie_db";
-    private static final int DB_VERSION = 3;
+    private static final int DB_VERSION = 6;
 
     public MovieOpenHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

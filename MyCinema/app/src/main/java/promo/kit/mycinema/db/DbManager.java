@@ -13,9 +13,6 @@ import java.util.List;
 import promo.kit.mycinema.interfaces.MovieDAO;
 import promo.kit.mycinema.model.Movie;
 
-/**
- * Created by Влад on 31.01.17.
- */
 
 public class DbManager implements MovieDAO<Movie> {
 

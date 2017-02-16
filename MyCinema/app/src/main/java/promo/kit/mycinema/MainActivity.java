@@ -82,11 +82,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(List<Movie> movieMovies) {
-            super.onPostExecute(movieMovies);
+        protected void onPostExecute(List<Movie> movies) {
+            super.onPostExecute(movies);
+            onMovieAll(movies);
+        }
 
-            db.saveAll(movieMovies);
-            movies.addAll(movieMovies);
+        protected void onMovieAll(List<Movie> movie) {
+            db.saveAll(movie);
+            movies.addAll(movie);
             adapter.notifyDataSetChanged();
         }
     }

@@ -77,7 +77,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
         public void bindFilm(Movie item) {
             mMovie = item;
             releeseData.setText(mMovie.getReleaseDate());
-            popularity.setText((int) mMovie.getPopularity());
+           // popularity.setText((int) mMovie.getPopularity());
 
             //       mImage.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), mMovie.getPosterId()));
         }

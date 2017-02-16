@@ -6,6 +6,8 @@ package promo.kit.mycinema.model;
 
 import android.database.Cursor;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Movie {
@@ -32,19 +34,29 @@ public class Movie {
 
 
 
+
+
+    @SerializedName("poster_patch")
     public String posterPath;
     public boolean adult;
     public String overview;
+    @SerializedName("release_date")
     public String releaseDate;
+    @SerializedName("genre_id")
     public List<Integer> genreIds = null;
     public int id;
+    @SerializedName("original_title")
     public String originalTitle;
+    @SerializedName("original_language")
     public String originalLanguage;
     public String title;
+    @SerializedName("backdrop_path")
     public String backdropPath;
     public double popularity;
+    @SerializedName("vote_count")
     public int voteCount;
     public boolean video;
+    @SerializedName("vote_average")
     public int voteAverage;
 
 
