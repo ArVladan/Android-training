@@ -1,19 +1,59 @@
 package promo.kit.mycinema.model;
 
-/**
- * Created by Влад on 15.01.17. This class created by site generation
- */
-
 import android.database.Cursor;
 
+import java.util.List;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
 
-public class Movie {
+public class Result extends MovieGson {
+
+    @SerializedName("poster_path")
+    @Expose
+    public String posterPath;
+    @SerializedName("adult")
+    @Expose
+    private Boolean adult;
+    @SerializedName("overview")
+    @Expose
+    public String overview;
+    @SerializedName("release_date")
+    @Expose
+    public String releaseDate;
+    @SerializedName("genre_ids")
+    @Expose
+    private List<Integer> genreIds = null;
+    @SerializedName("id")
+    @Expose
+    public Integer id;
+    @SerializedName("original_title")
+    @Expose
+    private String originalTitle;
+    @SerializedName("original_language")
+    @Expose
+    private String originalLanguage;
+    @SerializedName("title")
+    @Expose
+    public String title;
+    @SerializedName("backdrop_path")
+    @Expose
+    private String backdropPath;
+    @SerializedName("popularity")
+    @Expose
+    public Double popularity;
+    @SerializedName("vote_count")
+    @Expose
+    private Integer voteCount;
+    @SerializedName("video")
+    @Expose
+    private Boolean video;
+    @SerializedName("vote_average")
+    @Expose
+    private Double voteAverage;
+
     public static final String WIDTH_342 = "w342";
     public static final String WIDTH_500 = "w500";
-
     public static final String KEY_TITLE = "original_title";
     public static final String KEY_POSTER_PATH = "poster_path";
     public static final String KEY_OVERVIEW = "overview";
@@ -23,7 +63,6 @@ public class Movie {
     public static final String TABLE_MOVIE = "movies";
     private static final String URL_IMAGE_TMDB_DEFAULT = "http://image.tmdb.org/t/p/";
 
-
     public static String[] projection = {
             KEY_ID,
             KEY_TITLE,
@@ -32,38 +71,31 @@ public class Movie {
             KEY_RATE
     };
 
-
-
-
-
-    @SerializedName("poster_patch")
-    public String posterPath;
-    public boolean adult;
-    public String overview;
-    @SerializedName("release_date")
-    public String releaseDate;
-    @SerializedName("genre_id")
-    public List<Integer> genreIds = null;
-    public int id;
-    @SerializedName("original_title")
-    public String originalTitle;
-    @SerializedName("original_language")
-    public String originalLanguage;
-    public String title;
-    @SerializedName("backdrop_path")
-    public String backdropPath;
-    public double popularity;
-    @SerializedName("vote_count")
-    public int voteCount;
-    public boolean video;
-    @SerializedName("vote_average")
-    public int voteAverage;
-
-
-    public Movie() {
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public Result() {
     }
 
-    public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, int id, String originalTitle, String originalLanguage, String title, String backdropPath, double popularity, int voteCount, boolean video, int voteAverage) {
+    /**
+     *
+     * @param id
+     * @param genreIds
+     * @param title
+     * @param releaseDate
+     * @param overview
+     * @param posterPath
+     * @param originalTitle
+     * @param voteAverage
+     * @param originalLanguage
+     * @param adult
+     * @param backdropPath
+     * @param voteCount
+     * @param video
+     * @param popularity
+     */
+    public Result(String posterPath, Boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity, Integer voteCount, Boolean video, Double voteAverage) {
         super();
         this.posterPath = posterPath;
         this.adult = adult;
@@ -81,17 +113,6 @@ public class Movie {
         this.voteAverage = voteAverage;
     }
 
-    public static Movie getItemFromCursor(Cursor c) {
-        Movie item = new Movie();
-        item.id = c.getInt(c.getColumnIndex(Movie.KEY_ID));
-        item.title = c.getString(c.getColumnIndex(Movie.KEY_TITLE));
-        item.overview = c.getString(c.getColumnIndex(Movie.KEY_OVERVIEW));
-        item.posterPath = c.getString(c.getColumnIndex(Movie.KEY_POSTER_PATH));
-        item.popularity = c.getDouble(c.getColumnIndex(Movie.KEY_RATE));
-
-        return item;
-    }
-
     public String getPosterPath() {
         return posterPath;
     }
@@ -100,11 +121,11 @@ public class Movie {
         this.posterPath = posterPath;
     }
 
-    public boolean isAdult() {
+    public Boolean getAdult() {
         return adult;
     }
 
-    public void setAdult(boolean adult) {
+    public void setAdult(Boolean adult) {
         this.adult = adult;
     }
 
@@ -132,11 +153,11 @@ public class Movie {
         this.genreIds = genreIds;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -172,38 +193,47 @@ public class Movie {
         this.backdropPath = backdropPath;
     }
 
-    public double getPopularity() {
+    public Double getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(double popularity) {
+    public void setPopularity(Double popularity) {
         this.popularity = popularity;
     }
 
-    public int getVoteCount() {
+    public Integer getVoteCount() {
         return voteCount;
     }
 
-    public void setVoteCount(int voteCount) {
+    public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
 
-    public boolean isVideo() {
+    public Boolean getVideo() {
         return video;
     }
 
-    public void setVideo(boolean video) {
+    public void setVideo(Boolean video) {
         this.video = video;
     }
 
-    public int getVoteAverage() {
+    public Double getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(int voteAverage) {
+    public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
     }
+    public static Result getItemFromCursor(Cursor c) {
+        Result item = new Result();
+        item.id = c.getInt(c.getColumnIndex(Result.KEY_ID));
+        item.title = c.getString(c.getColumnIndex(Result.KEY_TITLE));
+        item.overview = c.getString(c.getColumnIndex(Result.KEY_OVERVIEW));
+        item.posterPath = c.getString(c.getColumnIndex(Result.KEY_POSTER_PATH));
+        item.popularity = c.getDouble(c.getColumnIndex(Result.KEY_RATE));
 
+        return item;
+    }
     public String getFullPosterPath(String preferedWidth) {
         StringBuilder sb = new StringBuilder();
         sb.append(URL_IMAGE_TMDB_DEFAULT);
@@ -214,4 +244,6 @@ public class Movie {
     }
 
 
+
 }
+

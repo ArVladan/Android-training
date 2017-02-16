@@ -4,7 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import promo.kit.mycinema.model.Movie;
+import promo.kit.mycinema.model.Result;
+
 
 public class MovieOpenHelper extends SQLiteOpenHelper {
 
@@ -18,20 +19,20 @@ public class MovieOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + Movie.TABLE_MOVIE + " (" +
-                Movie.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                Movie.KEY_TITLE + " TEXT, " +
-                Movie.KEY_OVERVIEW + " TEXT, " +
-                Movie.KEY_POSTER_PATH + " TEXT, " +
-                Movie.KEY_RATE + " INT, " +
-                Movie.KEY_RELEASE_DATE + " TEXT " +
+        db.execSQL("CREATE TABLE " + Result.TABLE_MOVIE + " (" +
+                Result.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                Result.KEY_TITLE + " TEXT, " +
+                Result.KEY_OVERVIEW + " TEXT, " +
+                Result.KEY_POSTER_PATH + " TEXT, " +
+                Result.KEY_RATE + " INT, " +
+                Result.KEY_RELEASE_DATE + " TEXT " +
                 ");"
         );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE " + Movie.TABLE_MOVIE);
+        db.execSQL("DROP TABLE " + Result.TABLE_MOVIE);
         onCreate(db);
     }
 }

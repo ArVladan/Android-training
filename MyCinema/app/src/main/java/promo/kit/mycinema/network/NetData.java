@@ -17,7 +17,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import promo.kit.mycinema.model.Movie;
+
+import promo.kit.mycinema.model.Result;
 
 /**
  * Created by Влад on 15.01.17.
@@ -26,6 +27,7 @@ import promo.kit.mycinema.model.Movie;
 public class NetData {
     private static final String TAG = "NetData";
     private static final String API_KEY = "b4b187ef65d78f5f798a4acb5f7b531e";
+
     public byte[] getUrlBytes(String urlSpec) throws IOException {
         URL url = new URL(urlSpec);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -51,8 +53,8 @@ public class NetData {
         return new String(getUrlBytes(urlSpec));
     }
 
-    public List<Movie> fetchItems() {
-        List<Movie> items = new ArrayList<>();
+    public List<Result> fetchItems() {
+        List<Result> items = new ArrayList<>();
         try {
             String url = Uri.parse("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b4b187ef65d78f5f798a4acb5f7b531e&language=ru")
                     .toString();
@@ -71,12 +73,12 @@ public class NetData {
     }
 
 
-    private void parseItems(List<Movie> items, JSONObject jsonBody) throws IOException, JSONException {
+    private void parseItems(List<Result> items, JSONObject jsonBody) throws IOException, JSONException {
         JSONArray movieJsonArray = jsonBody.getJSONArray("results");
         Gson gson = new Gson();
         for(int i = 0; i < movieJsonArray.length(); i++) {
             JSONObject movieJson = movieJsonArray.getJSONObject(i);
-            Movie item = gson.fromJson(movieJson.toString(), Movie.class);
+            Result item = gson.fromJson(movieJson.toString(), Result.class);
 
             items.add(item);
         }
