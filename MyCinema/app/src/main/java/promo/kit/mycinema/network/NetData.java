@@ -20,10 +20,6 @@ import java.util.List;
 
 import promo.kit.mycinema.model.Movie;
 
-/**
- * Created by Влад on 15.01.17.
- */
-
 public class NetData {
     private static final String TAG = "NetData";
     private static final String API_KEY = "b4b187ef65d78f5f798a4acb5f7b531e";
@@ -56,8 +52,12 @@ public class NetData {
     public List<Movie> fetchItems() {
         List<Movie> items = new ArrayList<>();
         try {
-            String url = Uri.parse("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b4b187ef65d78f5f798a4acb5f7b531e&language=ru")
-                    .toString();
+            String url = Uri.parse("http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&")
+                    .buildUpon()
+                    .appendQueryParameter("api_key", API_KEY)
+                    .appendQueryParameter("language", "ru-RUS")
+                    .appendQueryParameter("page", "1")
+                    .build().toString();
             String jsonString = getUrlString(url);
             Log.i(TAG, "Received JSON: " + jsonString);
             JSONObject jsonBody = new JSONObject(jsonString);
