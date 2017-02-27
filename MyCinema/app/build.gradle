@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_KEY", '"b4b187ef65d78f5f798a4acb5f7b531e"'
     }
     buildTypes {
         release {
@@ -30,4 +31,12 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.1.0'
     compile 'it.sephiroth.android.library.picasso:picasso:2.5.2.4b'
     compile 'com.google.code.gson:gson:2.8.0'
+<<<<<<< HEAD
+=======
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.squareup.dagger:dagger:1.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+>>>>>>> 8771be9e6ac69c6785a127a97bc6a31d3b95084a
 }
