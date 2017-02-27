@@ -1,4 +1,4 @@
-package promo.kit.mycinema;
+package promo.kit.mycinema.view;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import it.sephiroth.android.library.picasso.Picasso;
-import promo.kit.mycinema.data.db.DbManager;
+import promo.kit.mycinema.R;
 import promo.kit.mycinema.model.Movie;
 
 /**
@@ -18,7 +18,6 @@ import promo.kit.mycinema.model.Movie;
 public class DetailsMovie extends AppCompatActivity {
     Movie movie;
     Context context;
-    DbManager dbM;
     private Cursor c;
 
 
@@ -27,16 +26,16 @@ public class DetailsMovie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_movie_main);
         Bundle b = getIntent().getExtras();
-        ImageView posterId = (ImageView) findViewById(R.id.detailImage);
-       // dbM.get(b.getInt("id"));
-        int g = b.getInt("id");
-        Cursor с = dbM.getDbId(g);
-        movie = dbM.get(c);
-        if (!TextUtils.isEmpty(movie.getFullPosterPath(Movie.WIDTH_500)))
-            Picasso.with(context)
-                    .load(movie.getFullPosterPath(Movie.WIDTH_500))
-                    .placeholder(R.drawable.image_placeholder)
-                    .into(posterId);
+//        ImageView posterId = (ImageView) findViewById(R.id.detailImage);
+//       // dbM.get(b.getInt("id"));
+//        int g = b.getInt("id");
+//        Cursor с = dbM.getDbId(g);
+//        movie = dbM.get(c);
+//        if (!TextUtils.isEmpty(movie.getFullPosterPath(Movie.WIDTH_500)))
+//            Picasso.with(context)
+//                    .load(movie.getFullPosterPath(Movie.WIDTH_500))
+//                    .placeholder(R.drawable.image_placeholder)
+//                    .into(posterId);
 //        poster.setImageDrawable(getResources().getDrawable(b.getInt("id")));
 //        TextView textYear = (TextView) findViewById(R.id.year);
 //        textYear.setText(b.getString("id2"));

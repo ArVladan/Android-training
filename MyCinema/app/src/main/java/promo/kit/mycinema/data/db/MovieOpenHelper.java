@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import promo.kit.mycinema.model.Movie;
 
+
 public class MovieOpenHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "movie_db";
@@ -20,7 +21,6 @@ public class MovieOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + Movie.TABLE_MOVIE + " (" +
                 Movie.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                Movie.KEY_ID_MOVIE + " INT, " +
                 Movie.KEY_TITLE + " TEXT, " +
                 Movie.KEY_OVERVIEW + " TEXT, " +
                 Movie.KEY_POSTER_PATH + " TEXT, " +

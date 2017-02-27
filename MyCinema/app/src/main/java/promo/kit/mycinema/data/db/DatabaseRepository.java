@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,41 +14,36 @@ import java.util.List;
 import promo.kit.mycinema.interfaces.MovieDAO;
 import promo.kit.mycinema.model.Movie;
 
-/**
- * Created by Влад on 31.01.17.
- */
+public class DatabaseRepository implements MovieDAO<Movie> {
+    private static final String LOG_TAG = DatabaseRepository.class.getSimpleName();
+    private MovieOpenHelper dbHelper;
 
-public class DbManager implements MovieDAO<Movie> {
-
-    private static final String LOG_TAG = DbManager.class.getSimpleName();
-    private MovieOpenHelper dbHalper;
-
-    public DbManager(Context context) {
-        dbHalper = new MovieOpenHelper(context);
+    public DatabaseRepository(Context context) {
+        dbHelper = new MovieOpenHelper(context);
     }
 
     @Override
     public long save(Movie movie) throws IOException {
-        SQLiteDatabase db = dbHalper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
         ContentValues cv = new ContentValues();
         cv.put(Movie.KEY_TITLE, movie.title);
-        cv.put(Movie.KEY_ID, movie.id);
-        cv.put(Movie.KEY_ID_MOVIE, movie.id);
         cv.put(Movie.KEY_OVERVIEW, movie.overview);
-        cv.put(Movie.KEY_POSTER_PATH, movie.posterPath);
         cv.put(Movie.KEY_RATE, movie.popularity);
-        cv.put(Movie.KEY_RELEASE_DATE, movie.releaseDate);
+        cv.put(Movie.KEY_POSTER_PATH, movie.posterPath);
+        cv.put(Movie.KEY_ID, movie.id);
 
         long _id = db.insert(Movie.TABLE_MOVIE, null, cv);
         db.close();
-        return  _id;
 
+        return _id;
     }
 
     @Override
-    public boolean delete(Movie movie) {
-        SQLiteDatabase db = dbHalper.getWritableDatabase();
-        String[] whereArgs = {String.valueOf(movie.id)};
+    public boolean delete(Movie Movie) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        String[] whereArgs = {String.valueOf(Movie.id)};
         int rows = db.delete(Movie.TABLE_MOVIE, Movie.KEY_ID,
                 whereArgs);
         db.close();
@@ -56,20 +52,10 @@ public class DbManager implements MovieDAO<Movie> {
     }
 
 
-    public Cursor getDbId(int id) {
-        SQLiteDatabase db=dbHalper.getReadableDatabase();
-        Cursor c=db.query(Movie.TABLE_MOVIE, new String[]{String.valueOf(id)},null,
-                null,null,null,null);
-        db.close();
-
-        return c;
-    }
-
-
 
     @Override
     public Movie get(Cursor id) {
-        SQLiteDatabase db = dbHalper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         String[] whereArgs = {String.valueOf(id)};
         Cursor c = db.query(Movie.TABLE_MOVIE,
                 Movie.projection,
@@ -89,7 +75,7 @@ public class DbManager implements MovieDAO<Movie> {
 
     @Override
     public List<Movie> getAll() {
-        SQLiteDatabase db = dbHalper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor c = db.query(Movie.TABLE_MOVIE,
                 Movie.projection,
                 null,
@@ -114,14 +100,12 @@ public class DbManager implements MovieDAO<Movie> {
         return items;
     }
 
-
     @Override
     public void saveAll(List<Movie> movies) {
-        SQLiteDatabase db = dbHalper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         for (Movie movie: movies) {
             ContentValues cv = new ContentValues();
-            cv.put(Movie.KEY_ID_MOVIE, movie.id);
             cv.put(Movie.KEY_TITLE, movie.title);
             cv.put(Movie.KEY_OVERVIEW, movie.overview);
             cv.put(Movie.KEY_RATE, movie.popularity);
@@ -132,4 +116,6 @@ public class DbManager implements MovieDAO<Movie> {
 
         db.close();
     }
+
+
 }
