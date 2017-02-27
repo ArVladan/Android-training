@@ -70,7 +70,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
         @BindView(R.id.imageView)
         ImageView poster;
         @BindView(R.id.release_data)
-        TextView releeseData;
+        TextView releaseData;
         @BindView(R.id.popularity)
         TextView popularity;
 
@@ -82,7 +82,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
 
         public void bindFilm(Movie item) {
             mMovie = item;
-            releeseData.setText(mMovie.getReleaseDate());
+            releaseData.setText(mMovie.getReleaseDate());
         }
 
         @Override

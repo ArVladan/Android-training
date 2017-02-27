@@ -9,7 +9,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Movie extends MovieGson {
+public class Movie {
 
     @SerializedName("poster_path")
     @Expose
@@ -73,40 +73,6 @@ public class Movie extends MovieGson {
             KEY_RATE
     };
 
-<<<<<<< HEAD
-
-
-
-
-    @SerializedName("poster_patch")
-    public String posterPath;
-    public boolean adult;
-    public String overview;
-    @SerializedName("release_date")
-    public String releaseDate;
-    @SerializedName("genre_id")
-    public List<Integer> genreIds = null;
-    public int id;
-    @SerializedName("original_title")
-    public String originalTitle;
-    @SerializedName("original_language")
-    public String originalLanguage;
-    public String title;
-    @SerializedName("backdrop_path")
-    public String backdropPath;
-    public double popularity;
-    @SerializedName("vote_count")
-    public int voteCount;
-    public boolean video;
-    @SerializedName("vote_average")
-    public int voteAverage;
-
-
-    public Movie() {
-    }
-
-    public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, int id, String originalTitle, String originalLanguage, String title, String backdropPath, double popularity, int voteCount, boolean video, int voteAverage) {
-=======
     /**
      * No args constructor for use in serialization
      *
@@ -132,7 +98,6 @@ public class Movie extends MovieGson {
      * @param popularity
      */
     public Movie(String posterPath, Boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity, Integer voteCount, Boolean video, Float voteAverage) {
->>>>>>> 8771be9e6ac69c6785a127a97bc6a31d3b95084a
         super();
         this.posterPath = posterPath;
         this.adult = adult;
@@ -150,20 +115,6 @@ public class Movie extends MovieGson {
         this.voteAverage = voteAverage;
     }
 
-<<<<<<< HEAD
-    public static Movie getItemFromCursor(Cursor c) {
-        Movie item = new Movie();
-        item.id = c.getInt(c.getColumnIndex(Movie.KEY_ID));
-        item.title = c.getString(c.getColumnIndex(Movie.KEY_TITLE));
-        item.overview = c.getString(c.getColumnIndex(Movie.KEY_OVERVIEW));
-        item.posterPath = c.getString(c.getColumnIndex(Movie.KEY_POSTER_PATH));
-        item.popularity = c.getDouble(c.getColumnIndex(Movie.KEY_RATE));
-
-        return item;
-    }
-
-=======
->>>>>>> 8771be9e6ac69c6785a127a97bc6a31d3b95084a
     public String getPosterPath() {
         return posterPath;
     }
