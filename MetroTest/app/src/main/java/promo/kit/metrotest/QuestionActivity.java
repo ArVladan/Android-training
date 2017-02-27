@@ -29,41 +29,11 @@ public class QuestionActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-<<<<<<< HEAD
-    private Tab1 fr;
-
-
-=======
-    private QOneFragment fr;
->>>>>>> refs/remotes/origin/master
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
-
-        Bundle b = getIntent().getExtras();
-
-        //data for Fragment tab1
-
-<<<<<<< HEAD
-
-
-        String bilet = b.getString("id");
-        int number = b.getInt("id2");
-
-//
-//        //tab.newInstance(b.getString("id"), b.getInt("id2"));
-        fr = Tab1.newInstance(bilet, number);
-
-
-=======
-        //QOneFragment fr = QOneFragment.newInstance(b.getInt("id2"), b.getString("id"));
->>>>>>> refs/remotes/origin/master
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,13 +49,6 @@ public class QuestionActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
     }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> refs/remotes/origin/master
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
