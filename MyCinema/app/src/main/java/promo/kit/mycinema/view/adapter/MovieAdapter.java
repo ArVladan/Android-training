@@ -1,4 +1,4 @@
-package promo.kit.mycinema.adapter;
+package promo.kit.mycinema.view.adapter;
 
 
 import android.content.Context;
@@ -12,12 +12,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import it.sephiroth.android.library.picasso.Picasso;
 import promo.kit.mycinema.R;
+
 import promo.kit.mycinema.model.Movie;
 
+import static promo.kit.mycinema.R.layout.item;
+
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
-    //    private List<MovieOld> movies;
+
     private List<Movie> movies;
     private Context context;
 
@@ -29,7 +34,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
     @Override
     public MovieHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item, parent, false);
+                .inflate(item, parent, false);
         return new MovieHolder(view);
     }
 
@@ -60,34 +65,30 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
     }
 
     public class MovieHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ImageView poster;
-        private TextView releeseData;
-        private TextView popularity;
         private Movie mMovie;
 
+        @BindView(R.id.imageView)
+        ImageView poster;
+        @BindView(R.id.release_data)
+        TextView releeseData;
+        @BindView(R.id.popularity)
+        TextView popularity;
 
-        public MovieHolder(final View itemView) {
-            super(itemView);
-            poster = (ImageView) itemView.findViewById(R.id.imageView);
-            releeseData = (TextView) itemView.findViewById(R.id.releese_data);
-            popularity = (TextView) itemView.findViewById(R.id.genreMovie);
+        public MovieHolder(final View view) {
+            super(view);
+            ButterKnife.bind(this, view);
             itemView.setOnClickListener(this);
         }
 
         public void bindFilm(Movie item) {
             mMovie = item;
             releeseData.setText(mMovie.getReleaseDate());
-           // popularity.setText((int) mMovie.getPopularity());
-
-            //       mImage.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), mMovie.getPosterId()));
         }
 
         @Override
         public void onClick(View v) {
             listener.onItemClick(mMovie);
         }
-
     }
-
 
 }

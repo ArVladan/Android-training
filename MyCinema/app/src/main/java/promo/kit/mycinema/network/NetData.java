@@ -1,7 +1,9 @@
-package promo.kit.mycinema.data.network;
+package promo.kit.mycinema.network;
 
 import android.net.Uri;
 import android.util.Log;
+
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,6 +60,7 @@ public class NetData {
             Log.i(TAG, "Received JSON: " + jsonString);
             JSONObject jsonBody = new JSONObject(jsonString);
             parseItems(items, jsonBody);
+
         }catch (JSONException je) {
             Log.e(TAG, "Failed to parse JSON", je);
         } catch (IOException ioe) {
@@ -69,18 +72,12 @@ public class NetData {
 
 
     private void parseItems(List<Movie> items, JSONObject jsonBody) throws IOException, JSONException {
-       // JSONObject movieJson = jsonBody.getJSONObject("results");
-       // JSONArray movieJsonArray = movieJson.getJSONArray("results");
         JSONArray movieJsonArray = jsonBody.getJSONArray("results");
+        Gson gson = new Gson();
         for(int i = 0; i < movieJsonArray.length(); i++) {
             JSONObject movieJson = movieJsonArray.getJSONObject(i);
-            Movie item = new Movie();
-            item.setId(movieJson.getInt("id"));
-            item.setPosterPath(movieJson.getString("poster_path"));
-            item.setOriginalTitle(movieJson.getString("title"));
-            item.setReleaseDate(movieJson.getString("release_date"));
-            item.setPopularity(movieJson.getDouble("popularity"));
-            item.setOverview(movieJson.getString("overview"));
+            Movie item = gson.fromJson(movieJson.toString(), Movie.class);
+
             items.add(item);
         }
     }

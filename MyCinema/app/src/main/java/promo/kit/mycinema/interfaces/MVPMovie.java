@@ -1,8 +1,8 @@
 package promo.kit.mycinema.interfaces;
 
-/**
- * Created by Влад on 14.02.17.
- */
+import java.util.List;
+
+import promo.kit.mycinema.model.Movie;
 
 public interface MVPMovie {
     interface MoviesView {
@@ -12,7 +12,6 @@ public interface MVPMovie {
 
     interface MoviesPresenter {
         void setView(MoviesView view);
-
         void getMovies();
         void onMovieSelected(int id);
     }

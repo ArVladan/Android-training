@@ -2,10 +2,16 @@ package promo.kit.mycinema.data.network;
 
 import android.content.Context;
 
-/**
- * Created by Влад on 14.02.17.
- */
+import promo.kit.mycinema.data.Constants;
+
 public class NetworkRepository {
+    private final Context context;
+
     public NetworkRepository(Context context) {
+        this.context = context;
+    }
+
+    public void getMoviesApi(MovieAsync.IResultListener listener) {
+        new MovieAsync(listener).execute(Constants.URL_FETCH_MOVIES);
     }
 }

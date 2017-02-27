@@ -2,9 +2,6 @@ package promo.kit.mycinema.model;
 
 import java.io.Serializable;
 
-/**
- * Created by Влад on 03.01.17.
- */
 
 public class MovieOld implements Serializable {
     private int posterId;

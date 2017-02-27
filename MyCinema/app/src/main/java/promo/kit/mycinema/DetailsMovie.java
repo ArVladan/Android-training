@@ -1,25 +1,20 @@
 package promo.kit.mycinema;
 
-import android.content.Context;
-import android.database.Cursor;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import it.sephiroth.android.library.picasso.Picasso;
-import promo.kit.mycinema.data.db.DbManager;
-import promo.kit.mycinema.model.Movie;
+import java.util.List;
 
 /**
  * Created by Влад on 05.01.17.
  */
 
 public class DetailsMovie extends AppCompatActivity {
-    Movie movie;
-    Context context;
-    DbManager dbM;
-    private Cursor c;
 
 
     @Override
@@ -27,25 +22,16 @@ public class DetailsMovie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_movie_main);
         Bundle b = getIntent().getExtras();
-        ImageView posterId = (ImageView) findViewById(R.id.detailImage);
-       // dbM.get(b.getInt("id"));
-        int g = b.getInt("id");
-        Cursor с = dbM.getDbId(g);
-        movie = dbM.get(c);
-        if (!TextUtils.isEmpty(movie.getFullPosterPath(Movie.WIDTH_500)))
-            Picasso.with(context)
-                    .load(movie.getFullPosterPath(Movie.WIDTH_500))
-                    .placeholder(R.drawable.image_placeholder)
-                    .into(posterId);
-//        poster.setImageDrawable(getResources().getDrawable(b.getInt("id")));
-//        TextView textYear = (TextView) findViewById(R.id.year);
-//        textYear.setText(b.getString("id2"));
-//        TextView textGenre = (TextView) findViewById(R.id.genre);
-//        textGenre.setText(b.getString("id3"));
-//        TextView textTime = (TextView) findViewById(R.id.time);
-//        textTime.setText(b.getString("id4"));
-//          TextView textDetail = (TextView) findViewById(R.id.anons);
-//          textDetail.setText(b.getString("id"));
+        ImageView poster = (ImageView) findViewById(R.id.detailImage);
+        poster.setImageDrawable(getResources().getDrawable(b.getInt("id")));
+        TextView textYear = (TextView) findViewById(R.id.year);
+        textYear.setText(b.getString("id2"));
+        TextView textGenre = (TextView) findViewById(R.id.genre);
+        textGenre.setText(b.getString("id3"));
+        TextView textTime = (TextView) findViewById(R.id.time);
+        textTime.setText(b.getString("id4"));
+        TextView textDetail = (TextView) findViewById(R.id.anons);
+        textDetail.setText(b.getString("id5"));
 
     }
 

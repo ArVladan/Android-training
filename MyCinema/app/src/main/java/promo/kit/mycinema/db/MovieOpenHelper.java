@@ -1,11 +1,10 @@
-package promo.kit.mycinema.data.db;
+package promo.kit.mycinema.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import promo.kit.mycinema.model.Movie;
-
 
 public class MovieOpenHelper extends SQLiteOpenHelper {
 
