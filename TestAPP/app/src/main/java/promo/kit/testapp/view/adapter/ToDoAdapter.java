@@ -1,5 +1,6 @@
-package promo.kit.testapp.model.adapter;
+package promo.kit.testapp.view.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,11 @@ import promo.kit.testapp.model.Result;
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder>{
     private List<Result> result;
 
-    public ToDoAdapter(List<Result> list) {
-        result = list;
+    private Context context;
+
+    public  ToDoAdapter(Context context, List<Result> results) {
+        this.result = results;
+        this.context = context;
     }
 
 

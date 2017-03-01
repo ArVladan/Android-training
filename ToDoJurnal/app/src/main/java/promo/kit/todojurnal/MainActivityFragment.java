@@ -1,4 +1,4 @@
-package promo.kit.testapp;
+package promo.kit.todojurnal;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;

@@ -19,41 +19,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Query;
 
 public class NetworkRepository {
-    private Context context;
-    private Retrofit client;
-    private static RetrofitToDoAPI interRetrofit;
-
+    private final Context context;
 
     public NetworkRepository(Context context) {
-        this.context = this.context;
+        this.context = context;
     }
 
-    public void getRetroApi() {
-        String API_BASE_URL = "https://jsonplaceholder.typicode.com/";
-
-        client = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        interRetrofit = client.create(RetrofitToDoAPI.class);
+    public RetrofitToDoAPI getRetrofitToDoApi() {
+        return RetrofitFetcher.getApi();
     }
 
-    public static RetrofitToDoAPI getApi() {
-        return  interRetrofit;
-
-    }
-
-//    NetworkRepository.getApi().getToDo().enqueue(new Callback<List<Result>>() {
-//        @Override
-//        public void onResponse(Call<List<Result>> call, Response<List<Result>> response) {
-//            result.addAll(response.body());
-//
-//        }
-//
-//        @Override
-//        public void onFailure(Call<List<Result>> call, Throwable t) {
-//
-//        }
-//    });
 }
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
+import promo.kit.testapp.data.DataRepository;
 import promo.kit.testapp.data.NetworkRepository;
 import promo.kit.testapp.interfaces.IListener;
 import promo.kit.testapp.interfaces.MVPtoDo;
@@ -21,7 +22,7 @@ public class ToDoPresenter implements MVPtoDo.ToDoPresenter {
     public List<Result> result;
 
     public ToDoPresenter(Context context) {
-        model = new NetworkRepository(context);
+        model = new DataRepository(context);
     }
 
     @Override
