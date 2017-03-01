@@ -11,10 +11,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
 
-/**
- * Created by Влад on 09.02.17.
- */
-
 public class DataBaseHalper extends SQLiteOpenHelper {
 
     // путь к базе данных вашего приложения
