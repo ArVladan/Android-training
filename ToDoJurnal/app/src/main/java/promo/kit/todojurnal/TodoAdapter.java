@@ -57,15 +57,15 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
 
         public ViewHolder(View view) {
             super(view);
-            ButterKnife.bind(view);
+            ButterKnife.bind(this, view);
 
         }
 
         public void bind(ModelData model) {
             this.model = model;
+            titleText.setText(model.getTitle());
             dataText.setText(Integer.toString(model.getUserId()));
             idText.setText(String.valueOf(model.getId()));
-            titleText.setText(model.getTitle());
             comText.setText(Boolean.toString(model.isCompleted()));
 
         }

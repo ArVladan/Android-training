@@ -42,7 +42,8 @@
         }
 
         public String getTitle() {
-            return title;
+
+            return title.toString();
         }
 
         public void setTitle(String title) {
@@ -55,6 +56,14 @@
 
         public void setCompleted(boolean completed) {
             this.completed = completed;
+        }
+
+
+
+        @Override
+        public String toString() {
+            return "Id: " + this.id + "\nUser id: " + this.userId
+                    + "\nTitle: " + this.title + "\nCompleted: " + this.completed;
         }
 
     }
