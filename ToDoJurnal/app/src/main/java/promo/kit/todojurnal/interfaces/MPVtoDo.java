@@ -16,6 +16,6 @@ public interface MPVtoDo {
 
     }
     public interface ModelToDo {
-        public void fetchData();
+        public IRetrofit fetchData();
     }
 }
