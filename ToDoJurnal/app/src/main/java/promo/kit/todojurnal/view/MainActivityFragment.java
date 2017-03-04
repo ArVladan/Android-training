@@ -38,12 +38,9 @@ public class MainActivityFragment extends Fragment implements MPVtoDo.ViewToDo {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
-
-
         createUI (root);
         presenter = new ToDoPresenter();
         return root;
-
     }
 
     @Override
@@ -63,14 +60,11 @@ public class MainActivityFragment extends Fragment implements MPVtoDo.ViewToDo {
         recyclerView.setAdapter(adapter);
     }
 
-
-
     @Override
     public void onResult(List<ModelData> list) {
         this.list.clear();
         this.list.addAll(list);
         recyclerView.getAdapter().notifyDataSetChanged();
-
     }
 
     @Override

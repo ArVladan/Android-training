@@ -1,17 +1,9 @@
 package promo.kit.todojurnal.presenter;
 
-
-import android.content.Context;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import promo.kit.todojurnal.interfaces.MPVtoDo;
 import promo.kit.todojurnal.model.DataRepository;
 import promo.kit.todojurnal.model.ModelData;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -34,7 +26,7 @@ public class ToDoPresenter implements MPVtoDo.PresenterToDo {
     @Override
     public void getList() {
         model.getToDoList()
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(createSubscription());
     }
@@ -43,7 +35,6 @@ public class ToDoPresenter implements MPVtoDo.PresenterToDo {
             this.subscription = new Subscriber<List<ModelData>>() {
                 @Override
                 public void onCompleted() {
-
                 }
 
                 @Override
@@ -54,11 +45,9 @@ public class ToDoPresenter implements MPVtoDo.PresenterToDo {
                 @Override
                 public void onNext(List<ModelData> modelData) {
                     ToDoPresenter.this.view.onResult( modelData);
-
                 }
-
             };
-
         return (Subscriber) this.subscription;
     }
+
 }

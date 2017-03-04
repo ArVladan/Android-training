@@ -21,7 +21,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
         this.list = list;
     }
 
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
@@ -42,7 +41,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
         holder.bind(model);
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ModelData model;
@@ -55,11 +53,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
         @BindView(R.id.completed)
         TextView comText;
 
-
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-
         }
 
         public void bind(ModelData model) {
@@ -68,7 +64,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
             dataText.setText(Integer.toString(model.getUserId()));
             idText.setText(String.valueOf(model.getId()));
             comText.setText(Boolean.toString(model.isCompleted()));
-
         }
     }
 
