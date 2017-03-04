@@ -2,6 +2,7 @@ package promo.kit.todojurnal.interfaces;
 
 import java.util.List;
 
+
 import promo.kit.todojurnal.model.ModelData;
 
 public interface MPVtoDo {
@@ -16,6 +17,6 @@ public interface MPVtoDo {
 
     }
     public interface ModelToDo {
-        public IRetrofit fetchData();
+         rx.Observable<List<ModelData>> getToDoList();
     }
 }

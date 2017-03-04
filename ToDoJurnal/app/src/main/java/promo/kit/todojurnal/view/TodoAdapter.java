@@ -1,4 +1,4 @@
-package promo.kit.todojurnal;
+package promo.kit.todojurnal.view;
 
 
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +11,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import promo.kit.todojurnal.R;
 import promo.kit.todojurnal.model.ModelData;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{

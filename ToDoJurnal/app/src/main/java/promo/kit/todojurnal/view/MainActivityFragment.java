@@ -1,4 +1,4 @@
-package promo.kit.todojurnal;
+package promo.kit.todojurnal.view;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -15,12 +15,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import promo.kit.todojurnal.R;
 import promo.kit.todojurnal.interfaces.MPVtoDo;
 import promo.kit.todojurnal.model.ModelData;
 import promo.kit.todojurnal.presenter.ToDoPresenter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivityFragment extends Fragment implements MPVtoDo.ViewToDo {
     private LinearLayoutManager layout;
@@ -43,8 +41,7 @@ public class MainActivityFragment extends Fragment implements MPVtoDo.ViewToDo {
 
 
         createUI (root);
-        presenter = new ToDoPresenter(getContext());
-//        fetchResult();
+        presenter = new ToDoPresenter();
         return root;
 
     }
@@ -66,20 +63,6 @@ public class MainActivityFragment extends Fragment implements MPVtoDo.ViewToDo {
         recyclerView.setAdapter(adapter);
     }
 
-//    public void fetchResult() {
-//        App.getApi().getData().enqueue(new Callback<List<ModelData>>() {
-//            @Override
-//            public void onResponse(Call<List<ModelData>> call, Response<List<ModelData>> response) {
-//                list.addAll(response.body());
-//                recyclerView.getAdapter().notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<ModelData>> call, Throwable t) {
-//                Toast.makeText(getContext(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
 
     @Override

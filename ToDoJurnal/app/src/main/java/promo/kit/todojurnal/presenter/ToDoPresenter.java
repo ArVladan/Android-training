@@ -12,36 +12,53 @@ import promo.kit.todojurnal.model.ModelData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class ToDoPresenter implements MPVtoDo.PresenterToDo {
     MPVtoDo.ViewToDo view;
     MPVtoDo.ModelToDo model;
+    private Subscription subscription;
 
-    public ToDoPresenter(Context context) {
-        model = new DataRepository(context);
+    public ToDoPresenter() {
+        model = new DataRepository();
     }
 
     @Override
     public void setToDo(MPVtoDo.ViewToDo v) {
         view = v;
-
     }
 
     @Override
     public void getList() {
-        model.fetchData().getData().enqueue(new Callback<List<ModelData>>() {
-            @Override
-            public void onResponse(Call<List<ModelData>> call, Response<List<ModelData>> response) {
+        model.getToDoList()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(createSubscription());
+    }
+    private Subscriber createSubscription(){
+        if (this.subscription == null)
+            this.subscription = new Subscriber<List<ModelData>>() {
+                @Override
+                public void onCompleted() {
 
-                response.body();
-            }
+                }
 
-            @Override
-            public void onFailure(Call<List<ModelData>> call, Throwable t) {
+                @Override
+                public void onError(Throwable e) {
+                    ToDoPresenter.this.view.onError(e.getLocalizedMessage());
+                }
 
-            }
-        });
+                @Override
+                public void onNext(List<ModelData> modelData) {
+                    ToDoPresenter.this.view.onResult( modelData);
 
+                }
 
+            };
+
+        return (Subscriber) this.subscription;
     }
 }
