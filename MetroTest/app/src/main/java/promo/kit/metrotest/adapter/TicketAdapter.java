@@ -63,7 +63,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
         public ViewHolder(View itemView) {
             super(itemView);
-            bilet_text = (TextView) itemView.findViewById(R.id.bilet);
+            bilet_text = (TextView) itemView.findViewById(R.id.ticket);
             number_bilet = (TextView) itemView.findViewById(R.id.number);
             itemView.setOnClickListener(this);
         }

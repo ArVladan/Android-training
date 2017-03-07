@@ -3,11 +3,11 @@ package promo.kit.metrotest.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Влад on 31.01.17.
- */
 public class ModelItem {
     private String BILET = "Билет №";
+    public static final String TABLE_ANSWER = "answer_tab";
+    public static final String KEY_ID = "id";
+    public static final String ANSWER = "answer";
     private int number;
 
     public ModelItem(String BILET, int number) {
@@ -27,14 +27,6 @@ public class ModelItem {
         return BILET;
     }
 
-//    public static List<ModelItem> getFakeItems() {
-//        ArrayList<ModelItem> biletList = new ArrayList<>();
-//        for(int i = 0; i < 15; i++) {
-//            biletList.add(new ModelItem("Билет №", ++i));
-//            i--;
-//        }
-//        return biletList;
-//    }
 
 
 }

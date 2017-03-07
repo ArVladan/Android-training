@@ -1,16 +1,17 @@
 package promo.kit.metrotest;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import static promo.kit.metrotest.R.styleable.Toolbar;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -33,15 +34,13 @@ public class QuestionActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
         Bundle b = getIntent().getExtras();
-
-        //data for Fragment tab1
-
 
 
         String ticket = b.getString("id");
@@ -118,14 +117,25 @@ public class QuestionActivity extends AppCompatActivity {
                     QThreeFragment frThree = QThreeFragment.newInstance(b2.getInt("id2"), b2.getString("id"));
                     return frThree;
                 case 3:
-                    QFourFragment qFourFragment = new QFourFragment();
-                    return qFourFragment;
+                    Bundle b3 = getIntent().getExtras();
+                    QFourFragment frFour = QFourFragment.newInstance(b3.getInt("id2"), b3.getString("id"));
+                    return frFour;
                 case 4:
-                    QFiveFragment qFiveFragment = new QFiveFragment();
-                    return qFiveFragment;
+                    Bundle b4 = getIntent().getExtras();
+                    QFiveFragment frFive = QFiveFragment.newInstance(b4.getInt("id2"), b4.getString("id"));
+                    return frFive;
                 case 5:
-                    QSixFragment qSixFragment = new QSixFragment();
-                    return qSixFragment;
+                    Bundle b5 = getIntent().getExtras();
+                    QSixFragment frSix = QSixFragment.newInstance(b5.getInt("id2"), b5.getString("id"));
+                    return frSix;
+                case 6:
+                    Bundle b6 = getIntent().getExtras();
+                    QSevenFragment frSeven = QSevenFragment.newInstance(b6.getInt("id2"), b6.getString("id"));
+                    return frSeven;
+                case 7:
+                    Bundle b7 = getIntent().getExtras();
+                    QEightFragment frEight = QEightFragment.newInstance(b7.getInt("id2"), b7.getString("id"));
+                    return frEight;
                 default:
                     return null;
 
@@ -135,7 +145,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 6;
+            return 8;
         }
 
         @Override
@@ -153,6 +163,10 @@ public class QuestionActivity extends AppCompatActivity {
                     return "В 5";
                 case 5:
                     return "В 6";
+                case 6:
+                    return "В 7";
+                case 7:
+                    return "В 8";
                 default:
                     return null;
 

@@ -9,15 +9,16 @@
                 tools:context="promo.kit.metrotest.QuestionActivity">
 
     <TextView
-        android:id="@+id/section_5"
+        android:id="@+id/section_7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Вопрос 5"/>
+        tools:text="Вопрос 1"/>
+
     <TextView
-        android:id="@+id/answer_5"
+        android:id="@+id/answer_7"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/section_5"
+        android:layout_below="@id/section_7"
         android:paddingBottom="4dp"
         android:paddingLeft="2dp"
         android:paddingRight="4dp"
@@ -26,4 +27,5 @@
         android:maxLines="55"
         android:scrollbars="vertical"
         />
+
 </RelativeLayout>

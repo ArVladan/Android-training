@@ -9,16 +9,21 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import promo.kit.metrotest.adapter.TicketAdapter;
 import promo.kit.metrotest.model.ModelItem;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private RecyclerView recylerView;
     private LinearLayoutManager linearLayoutMenager;
     private TicketAdapter adapter;
-    private List<ModelItem> listBilet;
+    private List<ModelItem> listTicket;
+
+    @BindView(R.id.recicler)
+    RecyclerView recylerView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +40,13 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+        createTicket();
+        ButterKnife.bind(this);
 
-        createBilet();
-
-        recylerView = (RecyclerView) findViewById(R.id.recicler);
         linearLayoutMenager = new LinearLayoutManager(this);
         recylerView.setLayoutManager(linearLayoutMenager);
 
-        adapter = new TicketAdapter(listBilet);
+        adapter = new TicketAdapter(listTicket);
         recylerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new TicketAdapter.OnItemClickListener() {
@@ -57,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void createBilet() {
-        listBilet = new ArrayList<ModelItem>();
-        for(int i = 0; i < 15; i++) {
-            listBilet.add(new ModelItem("Билет №", ++i));
+    public void createTicket() {
+        listTicket = new ArrayList<ModelItem>();
+        for(int i = 0; i < 20; i++) {
+            listTicket.add(new ModelItem("Билет №", ++i));
             i--;
 
         }
