@@ -11,10 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import static promo.kit.metrotest.R.styleable.Toolbar;
 
 public class QuestionActivity extends AppCompatActivity {
-
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -33,8 +31,6 @@ public class QuestionActivity extends AppCompatActivity {
     private QOneFragment fr;
     private ViewPager mViewPager;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +38,8 @@ public class QuestionActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
-
         String ticket = b.getString("id");
         int number = b.getInt("id2");
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,6 +53,16 @@ public class QuestionActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+    }
+
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
     }
 
@@ -101,7 +105,6 @@ public class QuestionActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             //Returning the current tabs
             switch (position) {
-
 
                 case 0:
                     Bundle b = getIntent().getExtras();

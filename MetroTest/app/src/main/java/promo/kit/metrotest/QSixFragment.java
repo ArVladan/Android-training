@@ -2,6 +2,7 @@ package promo.kit.metrotest;
 
 import android.database.Cursor;
 import android.database.SQLException;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
@@ -10,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +58,7 @@ public class QSixFragment extends Fragment {
             sqlHelper.open();
             int tickets = getArguments().getInt("number");
             userCursor = sqlHelper.dbAnswer.query(DatabaseHelper.TABL_NAME,
-                    new String[] {"answer_6"},
+                    new String[] {"answer_6","jpeg_1", "jpeg_2"},
                     "_id = ?",
                     new String[] {Integer.toString(tickets)},
                     null, null, null);
@@ -62,50 +66,38 @@ public class QSixFragment extends Fragment {
             String a = userCursor.getString(userCursor.getColumnIndex(DatabaseHelper.COLUMN_ANSWER_6));
             outText.setText(a);
 
+            String resurs1 = userCursor.getString(userCursor.getColumnIndex(DatabaseHelper.COLUMN_IMAG_1));
+            String resurs2 = userCursor.getString(userCursor.getColumnIndex(DatabaseHelper.COLUMN_IMAG_2));
+
+            try {
+
+                InputStream ims = this.getContext().getAssets().open(resurs1);
+
+                Drawable d1 = Drawable.createFromStream(ims, null);
+                view1.setImageDrawable(d1);
+                if(resurs2 != null) {
+                    InputStream ims2 = this.getContext().getAssets().open(resurs2);
+                    Drawable d2 = Drawable.createFromStream(ims2, null);
+                    view2.setImageDrawable(d2);
+                }
+
+            }
+            catch(IOException ex) {
+                ex.printStackTrace();
+            }
+
         }
         catch (SQLException ex){} catch (java.sql.SQLException e) {
             e.printStackTrace();
         }
-
-        view1.setImageResource(onImage(tickets));
-
-
+        setRetainInstance(true);
 
         return rootView;
     }
 
-    public int onImage(int tickets) {
-        switch (tickets) {
-            case 1:
-                int image = R.drawable.pr_gagarina;
-                return image;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 20:
-            default:
-                return 0;
-        }
-    }
-
     @Override
     public void onResume(){
-        super.onResume();
+        super.onResume();userCursor.moveToNext();
 
     }
 
@@ -115,4 +107,5 @@ public class QSixFragment extends Fragment {
         sqlHelper.dbAnswer.close();
         userCursor.close();
     }
+
 }

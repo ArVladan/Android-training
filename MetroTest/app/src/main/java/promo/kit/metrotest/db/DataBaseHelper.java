@@ -2,7 +2,6 @@ package promo.kit.metrotest.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.io.File;
@@ -12,7 +11,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
 
-import promo.kit.metrotest.model.ModelItem;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -29,7 +27,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ANSWER_6 = "answer_6";
     public static final String COLUMN_ANSWER_7 = "answer_7";
     public static final String COLUMN_ANSWER_8 = "answer_8";
-    private static final int SCHEMA = 2;
+    public static final String COLUMN_IMAG_1 = "jpeg_1";
+    public static final String COLUMN_IMAG_2 = "jpeg_2";
+    private static final int SCHEMA = 1;
     private final Context context;
 
     public SQLiteDatabase dbAnswer;

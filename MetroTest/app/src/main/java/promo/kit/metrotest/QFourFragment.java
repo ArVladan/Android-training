@@ -60,7 +60,7 @@ public class QFourFragment extends Fragment {
         catch (SQLException ex){} catch (java.sql.SQLException e) {
             e.printStackTrace();
         }
-
+        setRetainInstance(true);
         return rootView;
     }
 
