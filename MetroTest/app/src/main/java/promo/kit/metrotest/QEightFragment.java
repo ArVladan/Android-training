@@ -1,23 +1,38 @@
 package promo.kit.metrotest;
 
 
+import android.app.Service;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import promo.kit.metrotest.db.DatabaseHelper;
 
 public class QEightFragment extends Fragment {
     private DatabaseHelper sqlHelper;
     private Cursor userCursor;
+    private int tickets;
+
+    @BindView(R.id.floatButton8)
+    FloatingActionButton fab;
+    @BindView(R.id.save_text8)
+    ImageButton saveText;
+    @BindView(R.id.edit_8)
+    EditText editText;
 
     @BindView(R.id.answer_8)
     TextView outText;
@@ -43,6 +58,9 @@ public class QEightFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         outText.setMovementMethod(new ScrollingMovementMethod());
+        editText.setMovementMethod(new ScrollingMovementMethod());
+        saveText.setVisibility(View.INVISIBLE);
+
         ticket.setText(getArguments().getString("ticket") + " " + getArguments().getInt("number"));
 
         try {
@@ -56,6 +74,8 @@ public class QEightFragment extends Fragment {
             userCursor.moveToFirst();
             String a = userCursor.getString(userCursor.getColumnIndex(DatabaseHelper.COLUMN_ANSWER_8));
             outText.setText(a);
+            editText.setText(outText.getText());
+            editText.setVisibility(View.INVISIBLE);
 
         }
         catch (SQLException ex){} catch (java.sql.SQLException e) {
@@ -63,6 +83,52 @@ public class QEightFragment extends Fragment {
         }
         setRetainInstance(true);
         return rootView;
+    }
+
+    @OnClick(R.id.floatButton8)
+    public void performSend(View view) {
+        if (outText.getVisibility() == View.VISIBLE) {
+            outText.setVisibility(View.INVISIBLE);
+            editText.setVisibility(View.VISIBLE);
+            saveText.setVisibility(View.VISIBLE);
+            editText.requestFocus();
+            InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Service.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(editText, 0);
+            saveText.setEnabled(true);
+
+        }
+        else {
+            outText.setVisibility(View.VISIBLE);
+            editText.setVisibility(View.INVISIBLE);
+            saveText.setVisibility(View.INVISIBLE);
+            saveText.setEnabled(false);
+        }
+    }
+
+    @OnClick(R.id.save_text8)
+    public void onSaveText(View view) {
+        outText.setText(editText.getText());
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put(DatabaseHelper.COLUMN_ANSWER_8, outText.getText().toString());
+            if (getArguments().getInt("number") > 0) {
+                sqlHelper.dbAnswer.update(DatabaseHelper.TABL_NAME, cv, "_id = ?", new String[] {Integer.toString(getArguments().getInt("number"))});
+            } else {
+                sqlHelper.dbAnswer.insert(DatabaseHelper.TABL_NAME, null, cv);
+            }
+
+        }
+        catch (SQLException ex){ ex.printStackTrace();
+        }
+
+        outText.setVisibility(View.VISIBLE);
+        editText.setVisibility(View.INVISIBLE);
+        saveText.setVisibility(View.INVISIBLE);
+        saveText.setEnabled(false);
+
+        InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Service.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
     }
 
     @Override
