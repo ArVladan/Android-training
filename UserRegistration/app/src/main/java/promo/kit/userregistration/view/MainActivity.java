@@ -21,8 +21,8 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
+//    @BindView(R.id.fab)
+//    FloatingActionButton fab;
 
 
 
@@ -55,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.fab)
-    public void performSend(View view) {
-        Intent i = new Intent(MainActivity.this, AddNewUser.class);
-
-        startActivity(i);
-    }
+//    @OnClick(R.id.fab)
+//    public void performSend(View view) {
+//        Intent i = new Intent(MainActivity.this, AddNewUser.class);
+//
+//        startActivity(i);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

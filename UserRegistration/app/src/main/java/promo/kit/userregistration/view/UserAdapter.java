@@ -17,16 +17,17 @@ import butterknife.ButterKnife;
 import it.sephiroth.android.library.picasso.Picasso;
 import promo.kit.userregistration.R;
 import promo.kit.userregistration.model.User;
+import promo.kit.userregistration.model.Result;
 
 import static promo.kit.userregistration.R.layout.item;
 
 public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserHolder> {
 
-    private List<User> users;
+    private List<Result> res;
     private Context context;
 
-    public  UserAdapter(List<User> user) {
-        this.users = user;
+    public  UserAdapter(List<Result> user) {
+        this.res = user;
     }
 
     @Override
@@ -38,32 +39,23 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserHolder> {
 
     @Override
     public int getItemCount() {
-        return users == null ? 0 : users.size();
+        return res == null ? 0 : res.size();
     }
 
     @Override
     public void onBindViewHolder(UserHolder holder, int position) {
-        User user = users.get(position);
-        if (!TextUtils.isEmpty(user.getPhoto(User.WIDTH_50)))
+        Result result = res.get(position);
+        if (!TextUtils.isEmpty(result.getPhoto("thumbnail")))
             Picasso.with(context)
-                    .load(user.getPhoto(User.WIDTH_50))
+                    .load(result.getPhoto("thumbnail"))
                     .placeholder(R.drawable.image_placeholder)
                     .into(holder.poster);
-        holder.bindFilm(user);
+        holder.bindUser(result);
     }
 
-    public static OnItemClickListener listener;
 
-    public interface OnItemClickListener {
-        void onItemClick(User user);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }
-
-    public class UserHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private User user;
+    public class UserHolder extends RecyclerView.ViewHolder {
+        private Result result;
 
         @BindView(R.id.imageView)
         ImageView poster;
@@ -73,18 +65,13 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserHolder> {
         public UserHolder(final View view) {
             super(view);
             ButterKnife.bind(this, view);
-            itemView.setOnClickListener(this);
         }
 
-        public void bindFilm(User item) {
-            user = item;
-            name.setText(user.getName());
-        }
-
-        @Override
-        public void onClick(View v) {
-            listener.onItemClick(user);
+        public void bindUser(Result res) {
+            result = res;
+            name.setText(result.getName().getFirst());
         }
     }
+
 
 }

@@ -3,6 +3,7 @@ package promo.kit.userregistration.presenter;
 import java.util.List;
 
 import promo.kit.userregistration.interfaces.MVPUser;
+import promo.kit.userregistration.model.Result;
 import promo.kit.userregistration.model.User;
 import promo.kit.userregistration.model.data.DataRepository;
 import rx.Subscriber;
@@ -26,16 +27,17 @@ public class UserPresenters implements MVPUser.PresenterUser {
 
     @Override
     public void getList() {
-        model.getUsers()
+        model.getResult()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(createSubscription());
     }
+
     private Subscriber createSubscription(){
         if (this.subscription != null)
             return this.subscription;
 
-        this.subscription = new Subscriber<List<User>>() {
+        this.subscription = new Subscriber<List<Result>>() {
             @Override
             public void onCompleted() {
             }
@@ -46,7 +48,7 @@ public class UserPresenters implements MVPUser.PresenterUser {
             }
 
             @Override
-            public void onNext(List<User> modelData) {
+            public void onNext(List<Result> modelData) {
                 UserPresenters.this.view.onResult(modelData);
             }
         };

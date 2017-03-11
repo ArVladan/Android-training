@@ -4,7 +4,7 @@ import java.util.List;
 
 import promo.kit.userregistration.interfaces.MVPUser;
 import promo.kit.userregistration.interfaces.RetroUser;
-import promo.kit.userregistration.model.User;
+import promo.kit.userregistration.model.Result;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -31,7 +31,7 @@ public class DataRepository implements MVPUser.ModelUser{
 
 
     @Override
-    public Observable<List<User>> getUsers() {
+    public Observable<List<Result>> getResult() {
         return inRetrofit.getUsers();
     }
 }

@@ -1,6 +1,8 @@
 package promo.kit.userregistration.view;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +17,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import promo.kit.userregistration.R;
 import promo.kit.userregistration.interfaces.MVPUser;
+import promo.kit.userregistration.model.Result;
 import promo.kit.userregistration.model.User;
 import promo.kit.userregistration.presenter.UserPresenters;
 
@@ -25,10 +29,13 @@ import promo.kit.userregistration.presenter.UserPresenters;
  */
 public class MainActivityFragment extends Fragment implements MVPUser.ViewUser {
 
-    public   List<User> list;
+    public   List<Result> list;
     private UserAdapter adapter;
     private MVPUser.PresenterUser presenter;
     private Context context;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
 
     @BindView(R.id.recycler)
     RecyclerView rv;
@@ -49,7 +56,7 @@ public class MainActivityFragment extends Fragment implements MVPUser.ViewUser {
     }
 
     private void initUI(View root) {
-        list = new ArrayList<User>();
+        list = new ArrayList<Result>();
         ButterKnife.bind(this, root);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         rv.setLayoutManager(layoutManager);
@@ -57,6 +64,13 @@ public class MainActivityFragment extends Fragment implements MVPUser.ViewUser {
         adapter = new UserAdapter(list);
         rv.setAdapter(adapter);
     }
+    @OnClick(R.id.fab)
+    public void performSend(View view) {
+        Intent i = new Intent(getActivity(), AddNewUser.class);
+
+        startActivity(i);
+    }
+
 
     @Override
     public void onResume() {
@@ -68,7 +82,7 @@ public class MainActivityFragment extends Fragment implements MVPUser.ViewUser {
 
 
     @Override
-    public void onResult(List<User> list) {
+    public void onResult(List<Result> list) {
         this.list.clear();
         this.list.addAll(list);
         rv.getAdapter().notifyDataSetChanged();

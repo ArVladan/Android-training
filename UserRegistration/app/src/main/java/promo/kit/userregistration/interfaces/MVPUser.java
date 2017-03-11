@@ -2,12 +2,13 @@ package promo.kit.userregistration.interfaces;
 
 import java.util.List;
 
-import promo.kit.userregistration.model.User;
+
+import promo.kit.userregistration.model.Result;
 import rx.Observable;
 
 public interface MVPUser {
     public interface ViewUser {
-        public void onResult(List<User> list);
+        public void onResult(List<Result> list);
         public void onError(String e);
     }
 
@@ -17,7 +18,7 @@ public interface MVPUser {
     }
 
     public interface ModelUser {
-        Observable<List<User>> getUsers();
+        Observable<List<Result>> getResult();
     }
 
 }

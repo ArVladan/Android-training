@@ -3,11 +3,13 @@ package promo.kit.userregistration.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import promo.kit.userregistration.model.Id;
+import promo.kit.userregistration.model.Location;
+import promo.kit.userregistration.model.Login;
+import promo.kit.userregistration.model.Name;
+import promo.kit.userregistration.model.Picture;
 
-
-public class User {
-//    public static final String WIDTH_50 = "w50";
+public class Result {
 
     @SerializedName("gender")
     @Expose
@@ -46,51 +48,6 @@ public class User {
     @Expose
     private String nat;
 
-    @SerializedName("title")
-    @Expose
-    private String title;
-    @SerializedName("first")
-    @Expose
-    private String first;
-    @SerializedName("last")
-    @Expose
-    private String last;
-
-    public List<User> user;
-
-    public User(Name name, String email, String phone, Picture picture, String first, String last) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.picture = picture;
-        this.first = first;
-        this.last = last;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getFirst() {
-        return first;
-    }
-
-    public void setFirst(String first) {
-        this.first = first;
-    }
-
-    public String getLast() {
-        return last;
-    }
-
-    public void setLast(String last) {
-        this.last = last;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -99,10 +56,8 @@ public class User {
         this.gender = gender;
     }
 
-    public String getName() {
-        String last = getLast();
-        String first = getFirst();
-        return last + first;
+    public Name getName() {
+        return name;
     }
 
     public void setName(Name name) {
@@ -189,6 +144,14 @@ public class User {
         this.nat = nat;
     }
 
+    public String getPhoto (String preferedWidth) {
+        StringBuilder sb = new StringBuilder();
+        picture = new Picture();
+        sb.append(picture.getThumbnail());
+        sb.append(preferedWidth);
 
+        return sb.toString();
+    }
 
 }
+
