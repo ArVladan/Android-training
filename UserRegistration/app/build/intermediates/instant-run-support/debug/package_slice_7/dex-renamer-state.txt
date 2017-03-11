@@ -1,0 +1,4 @@
+#Sat Mar 11 13:15:06 EET 2017
+base.0=D\:\\JAVA\\GitHub\\Android\\UserRegistration\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_7
+renamed.0=classes.dex
+file.0=D\:\\JAVA\\GitHub\\Android\\UserRegistration\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_7\\classes.dex

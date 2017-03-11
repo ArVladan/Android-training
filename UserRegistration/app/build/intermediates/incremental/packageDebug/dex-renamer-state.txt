@@ -1,0 +1,7 @@
+#Sat Mar 11 16:39:58 EET 2017
+base.0=D\:\\JAVA\\GitHub\\Android\\UserRegistration\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_6a58dcfe2a9537c8b39cb7e09410eeaffc7f5510
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=D\:\\JAVA\\GitHub\\Android\\UserRegistration\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_d51d2441d8576862c5e315181c6a74dde45ce48e\\classes.dex
+base.1=D\:\\JAVA\\GitHub\\Android\\UserRegistration\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_d51d2441d8576862c5e315181c6a74dde45ce48e
+file.0=D\:\\JAVA\\GitHub\\Android\\UserRegistration\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_6a58dcfe2a9537c8b39cb7e09410eeaffc7f5510\\classes.dex

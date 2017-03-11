@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\JAVA\\Home work\\AndroidProject\\RetrofitTutorial-master\\TestUser\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher.png",
+        "source": "D:\\JAVA\\Home work\\AndroidProject\\RetrofitTutorial-master\\TestUser\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\JAVA\\GitHub\\Android\\TestUser\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher.png",
+        "source": "D:\\JAVA\\GitHub\\Android\\TestUser\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\JAVA\\GitHub\\Android\\TestUser\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher_round.png",
+        "source": "D:\\JAVA\\GitHub\\Android\\TestUser\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\JAVA\\Home work\\AndroidProject\\RetrofitTutorial-master\\TestUser\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher_round.png",
+        "source": "D:\\JAVA\\Home work\\AndroidProject\\RetrofitTutorial-master\\TestUser\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    }
+]

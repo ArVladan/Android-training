@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\JAVA\\GitHub\\Android\\UserRegistration\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
+        "source": "D:\\JAVA\\GitHub\\Android\\UserRegistration\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\JAVA\\GitHub\\Android\\UserRegistration\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher_round.png",
+        "source": "D:\\JAVA\\GitHub\\Android\\UserRegistration\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    }
+]
