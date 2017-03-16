@@ -1,13 +1,8 @@
+
 package promo.kit.userregistration.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import promo.kit.userregistration.model.Id;
-import promo.kit.userregistration.model.Location;
-import promo.kit.userregistration.model.Login;
-import promo.kit.userregistration.model.Name;
-import promo.kit.userregistration.model.Picture;
 
 public class Result {
 
@@ -144,14 +139,4 @@ public class Result {
         this.nat = nat;
     }
 
-    public String getPhoto (String preferedWidth) {
-        StringBuilder sb = new StringBuilder();
-        picture = new Picture();
-        sb.append(picture.getThumbnail());
-        sb.append(preferedWidth);
-
-        return sb.toString();
-    }
-
 }
-

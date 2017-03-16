@@ -1,10 +1,7 @@
-package promo.kit.userregistration.model.data;
-
-import java.util.List;
+package promo.kit.userregistration.model;
 
 import promo.kit.userregistration.interfaces.MVPUser;
 import promo.kit.userregistration.interfaces.RetroUser;
-import promo.kit.userregistration.model.Result;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -12,11 +9,11 @@ import rx.Observable;
 
 public class DataRepository implements MVPUser.ModelUser{
     private static final String URL_REST = "https://randomuser.me/";
-    private static RetroUser inRetrofit;
+    private static RetroUser retroUser;
     private Retrofit retrofit;
 
     public DataRepository() {
-        inRetrofit = createIRetrofit();
+        retroUser = createIRetrofit();
     }
 
     private RetroUser createIRetrofit() {
@@ -25,14 +22,13 @@ public class DataRepository implements MVPUser.ModelUser{
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-        inRetrofit = retrofit.create(RetroUser.class);
-        return inRetrofit;
+        retroUser = retrofit.create(RetroUser.class);
+        return retroUser;
     }
 
-
     @Override
-    public Observable<List<Result>> getResult() {
-        return inRetrofit.getUsers();
+    public Observable<User> getResult() {
+        return retroUser.getData();
     }
 }
 

@@ -1,3 +1,4 @@
+
 package promo.kit.userregistration.model;
 
 import com.google.gson.annotations.Expose;

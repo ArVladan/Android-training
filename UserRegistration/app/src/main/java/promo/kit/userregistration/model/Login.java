@@ -1,9 +1,8 @@
-package promo.kit.userregistration.model;
 
+package promo.kit.userregistration.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 
 public class Login {
 

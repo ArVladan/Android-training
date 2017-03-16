@@ -1,24 +1,14 @@
 package promo.kit.userregistration.view;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import java.util.List;
-import butterknife.BindView;
-import butterknife.OnClick;
+
 import promo.kit.userregistration.R;
-import promo.kit.userregistration.model.User;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 //    @BindView(R.id.fab)
@@ -42,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment);
 
@@ -54,13 +43,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-//    @OnClick(R.id.fab)
-//    public void performSend(View view) {
-//        Intent i = new Intent(MainActivity.this, AddNewUser.class);
-//
-//        startActivity(i);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

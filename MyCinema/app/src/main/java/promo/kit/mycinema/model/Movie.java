@@ -2,11 +2,10 @@ package promo.kit.mycinema.model;
 
 import android.database.Cursor;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 
 public class Movie {
@@ -226,6 +225,7 @@ public class Movie {
     public void setVoteAverage(Float voteAverage) {
         this.voteAverage = voteAverage;
     }
+
     public static Movie getItemFromCursor(Cursor c) {
         Movie item = new Movie();
         item.id = c.getInt(c.getColumnIndex(Movie.KEY_ID));
@@ -244,8 +244,6 @@ public class Movie {
 
         return sb.toString();
     }
-
-
 
 }
 

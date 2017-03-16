@@ -37,6 +37,7 @@ public class ArsAdapter extends RecyclerView.Adapter<ArsAdapter.ArsHolder>{
 
     @Override
     public int getItemCount() {
+        mArsenalList=null;
         return mArsenalList.size();
     }
     public class ArsHolder extends RecyclerView.ViewHolder {

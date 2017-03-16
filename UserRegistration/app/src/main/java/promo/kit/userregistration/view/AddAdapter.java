@@ -18,23 +18,23 @@ import it.sephiroth.android.library.picasso.Picasso;
 import promo.kit.userregistration.R;
 import promo.kit.userregistration.model.Result;
 
-import static promo.kit.userregistration.R.layout.item;
+import static promo.kit.userregistration.R.layout.item_add;
 
-public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserHolder> {
+public class AddAdapter extends RecyclerView.Adapter<AddAdapter.AddHolder> {
 
     private List<Result> res;
     private Context context;
 
-    public  UserAdapter(List<Result> user, Context context) {
+    public  AddAdapter(List<Result> user, Context context) {
         this.context = context;
         res = user;
     }
 
     @Override
-    public UserHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AddHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(item, parent, false);
-        return new UserHolder(view);
+                .inflate(item_add, parent, false);
+        return new AddHolder(view);
     }
 
     @Override
@@ -43,9 +43,9 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserHolder> {
     }
 
     @Override
-    public void onBindViewHolder(UserHolder holder, int position) {
+    public void onBindViewHolder(AddHolder holder, int position) {
         Result result = res.get(position);
-        String image = result.getPicture().getThumbnail();
+        String image = result.getPicture().getLarge();
         if (!TextUtils.isEmpty(image))
             Picasso.with(context)
                     .load(image)
@@ -55,15 +55,21 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserHolder> {
     }
 
 
-    public class UserHolder extends RecyclerView.ViewHolder {
+    public class AddHolder extends RecyclerView.ViewHolder {
         private Result result;
 
-        @BindView(R.id.imageView)
+        @BindView(R.id.portrait)
         ImageView poster;
-        @BindView(R.id.name)
+        @BindView(R.id.name_id)
         TextView name;
+        @BindView(R.id.password_id)
+        TextView pass;
+        @BindView(R.id.mail_id)
+        TextView mail;
+        @BindView(R.id.login_id)
+        TextView login;
 
-        public UserHolder(final View view) {
+        public AddHolder(final View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
@@ -71,8 +77,10 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserHolder> {
         public void bindUser(Result res) {
             result = res;
             name.setText(result.getName().getFirst() + " " + result.getName().getLast());
+            mail.setText(result.getEmail());
+            login.setText(result.getLogin().getUsername());
+            pass.setText(result.getLogin().getPassword());
         }
     }
-
 
 }
