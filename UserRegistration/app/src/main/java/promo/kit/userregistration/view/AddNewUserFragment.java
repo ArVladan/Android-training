@@ -30,10 +30,9 @@ import promo.kit.userregistration.presenter.UserPresenters;
  */
 public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
 
-    public List<Result> results;
-    public User user;
+    private List<Result> results;
+    private User user;
     private Result result;
-//    private AddAdapter adapter;
     private MVPUser.PresenterUser presenter;
     private Context context;
 
@@ -47,11 +46,6 @@ public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
     TextView mail;
     @BindView(R.id.login_id)
     TextView login;
-//
-//    @BindView(R.id.fab_add)
-//    FloatingActionButton fb;
-//    @BindView(R.id.recycler)
-//    RecyclerView rv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +53,8 @@ public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
         View root = inflater.inflate(R.layout.fragment_add_new_user, container, false);
 
         presenter = new UserPresenters();
-//        ButterKnife.bind(this, root);
+
+        setRetainInstance(true);
 
         initUI(root);
         return root;
@@ -68,25 +63,7 @@ public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
     private void initUI(View root) {
         results = new ArrayList<Result>();
         ButterKnife.bind(this, root);
-        onResult(user);
-        name.setText(result.getName().getFirst() + " " + result.getName().getLast());
-        mail.setText(result.getEmail());
-        login.setText(result.getLogin().getUsername());
-        pass.setText(result.getLogin().getPassword());
-        String image = result.getPicture().getLarge();
-        if (!TextUtils.isEmpty(image))
-            Picasso.with(context)
-                    .load(image)
-                    .placeholder(R.drawable.image_placeholder)
-                    .into(poster);
 
-
-        setRetainInstance(true);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-//        rv.setLayoutManager(layoutManager);
-//
-//        adapter = new AddAdapter(results, getContext());
-//        rv.setAdapter(adapter);
     }
 
     @OnClick(R.id.fab_add)
@@ -109,9 +86,17 @@ public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
         this.results.clear();
         this.results.addAll(user.getResults());
         result = results.get(0);
+        name.setText(result.getName().getFirst() + " " + result.getName().getLast());
+        mail.setText(result.getEmail());
+        login.setText(result.getLogin().getUsername());
+        pass.setText(result.getLogin().getPassword());
+        String image = result.getPicture().getLarge();
+        if (!TextUtils.isEmpty(image))
+            Picasso.with(getContext())
+                    .load(image)
+                    .placeholder(R.drawable.image_placeholder)
+                    .into(poster);
 
-
-//        rv.getAdapter().notifyDataSetChanged();
     }
 
     @Override

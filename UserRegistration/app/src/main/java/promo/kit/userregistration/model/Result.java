@@ -43,6 +43,14 @@ public class Result {
     @Expose
     private String nat;
 
+    public Result() {
+    }
+
+    public Result(Name name, Picture picture) {
+        this.name = name;
+        this.picture = picture;
+    }
+
     public String getGender() {
         return gender;
     }
@@ -138,5 +146,6 @@ public class Result {
     public void setNat(String nat) {
         this.nat = nat;
     }
+
 
 }

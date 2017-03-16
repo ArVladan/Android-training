@@ -5,7 +5,7 @@ import promo.kit.userregistration.model.User;
 import retrofit2.http.GET;
 import rx.Observable;
 
-public interface RetroUser {
+public interface IRetroUser {
     @GET("api")
     Observable<User> getData();
 }

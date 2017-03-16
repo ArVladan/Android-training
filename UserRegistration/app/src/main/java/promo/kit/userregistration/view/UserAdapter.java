@@ -54,7 +54,6 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserHolder> {
         holder.bindUser(result);
     }
 
-
     public class UserHolder extends RecyclerView.ViewHolder {
         private Result result;
 
@@ -70,9 +69,8 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserHolder> {
 
         public void bindUser(Result res) {
             result = res;
-            name.setText(result.getName().getFirst() + " " + result.getName().getLast());
+            name.setText(result.getName().getFirst());
         }
     }
-
 
 }

@@ -16,6 +16,13 @@ public class Name {
     @Expose
     private String last;
 
+    public Name() {
+    }
+
+    public Name(String first) {
+        this.first = first;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -39,5 +46,6 @@ public class Name {
     public void setLast(String last) {
         this.last = last;
     }
+
 
 }
