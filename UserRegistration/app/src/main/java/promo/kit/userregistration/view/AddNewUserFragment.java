@@ -4,11 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import it.sephiroth.android.library.picasso.Picasso;
 import promo.kit.userregistration.R;
 import promo.kit.userregistration.interfaces.MVPUser;
 import promo.kit.userregistration.model.Result;
@@ -31,14 +33,25 @@ public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
     public List<Result> results;
     public User user;
     private Result result;
-    private AddAdapter adapter;
+//    private AddAdapter adapter;
     private MVPUser.PresenterUser presenter;
     private Context context;
+
+    @BindView(R.id.portrait)
+    ImageView poster;
+    @BindView(R.id.name_id)
+    TextView name;
+    @BindView(R.id.password_id)
+    TextView pass;
+    @BindView(R.id.mail_id)
+    TextView mail;
+    @BindView(R.id.login_id)
+    TextView login;
 //
 //    @BindView(R.id.fab_add)
 //    FloatingActionButton fb;
-    @BindView(R.id.recycler)
-    RecyclerView rv;
+//    @BindView(R.id.recycler)
+//    RecyclerView rv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +59,7 @@ public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
         View root = inflater.inflate(R.layout.fragment_add_new_user, container, false);
 
         presenter = new UserPresenters();
+//        ButterKnife.bind(this, root);
 
         initUI(root);
         return root;
@@ -54,17 +68,32 @@ public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
     private void initUI(View root) {
         results = new ArrayList<Result>();
         ButterKnife.bind(this, root);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        rv.setLayoutManager(layoutManager);
+        onResult(user);
+        name.setText(result.getName().getFirst() + " " + result.getName().getLast());
+        mail.setText(result.getEmail());
+        login.setText(result.getLogin().getUsername());
+        pass.setText(result.getLogin().getPassword());
+        String image = result.getPicture().getLarge();
+        if (!TextUtils.isEmpty(image))
+            Picasso.with(context)
+                    .load(image)
+                    .placeholder(R.drawable.image_placeholder)
+                    .into(poster);
 
-        adapter = new AddAdapter(results, getContext());
-        rv.setAdapter(adapter);
+
+        setRetainInstance(true);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+//        rv.setLayoutManager(layoutManager);
+//
+//        adapter = new AddAdapter(results, getContext());
+//        rv.setAdapter(adapter);
     }
 
     @OnClick(R.id.fab_add)
     public void performSend(View view) {
         Intent i = new Intent(getActivity(), MainActivity.class);
         i.putExtra("id", result.getName().getFirst());
+        i.putExtra("icon", result.getPicture().getThumbnail());
         startActivity(i);
     }
 
@@ -79,7 +108,10 @@ public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
     public void onResult(User user) {
         this.results.clear();
         this.results.addAll(user.getResults());
-        rv.getAdapter().notifyDataSetChanged();
+        result = results.get(0);
+
+
+//        rv.getAdapter().notifyDataSetChanged();
     }
 
     @Override

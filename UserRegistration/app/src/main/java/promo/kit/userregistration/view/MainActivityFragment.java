@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +31,17 @@ public class MainActivityFragment extends Fragment  {
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
-    @BindView(R.id.recycler)
-    RecyclerView rv;
+//    @BindView(R.id.recycler)
+//    RecyclerView rv;
+
+    public static MainActivityFragment newInstance(String name, String adress) {
+        MainActivityFragment mainList = new MainActivityFragment();
+        Bundle arg = new Bundle();
+        arg.putString("id", name);
+        arg.putString("icon", adress);
+        mainList.setArguments(arg);
+        return mainList;
+    }
 
 
     @Override

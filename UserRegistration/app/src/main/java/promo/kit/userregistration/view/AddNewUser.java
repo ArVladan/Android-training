@@ -28,5 +28,14 @@ public class AddNewUser extends AppCompatActivity {
                     .commit();
         }
     }
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+    }
+
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+    }
 
 }
