@@ -50,11 +50,12 @@ public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View root = inflater.inflate(R.layout.fragment_add_new_user, container, false);
 
-        presenter = new UserPresenters();
+        this.setRetainInstance(true);
 
-        setRetainInstance(true);
+        presenter = new UserPresenters();
 
         initUI(root);
         return root;
@@ -70,6 +71,7 @@ public class AddNewUserFragment extends Fragment implements MVPUser.ViewUser {
     public void performSend(View view) {
         Intent i = new Intent(getActivity(), MainActivity.class);
         i.putExtra("id", result.getName().getFirst());
+        i.putExtra("last", result.getName().getLast());
         i.putExtra("icon", result.getPicture().getThumbnail());
         startActivity(i);
     }

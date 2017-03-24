@@ -11,9 +11,7 @@ import java.util.List;
 
 import promo.kit.provokator.model.Arsenal;
 
-/**
- * Created by Влад on 05.01.17.
- */
+
 public class ArsAdapter extends RecyclerView.Adapter<ArsAdapter.ArsHolder>{
     public List<Arsenal> mArsenalList;
     public ArsAdapter(List<Arsenal> arsenals) {
@@ -37,7 +35,6 @@ public class ArsAdapter extends RecyclerView.Adapter<ArsAdapter.ArsHolder>{
 
     @Override
     public int getItemCount() {
-        mArsenalList=null;
         return mArsenalList.size();
     }
     public class ArsHolder extends RecyclerView.ViewHolder {

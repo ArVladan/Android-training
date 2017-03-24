@@ -54,6 +54,13 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserHolder> {
         holder.bindUser(result);
     }
 
+    public void addItem(int position, Result user){
+        this.res.add(position, user);
+        //Мы можем вызвать
+        //super.notifyItemInserted(position);
+    }
+
+
     public class UserHolder extends RecyclerView.ViewHolder {
         private Result result;
 

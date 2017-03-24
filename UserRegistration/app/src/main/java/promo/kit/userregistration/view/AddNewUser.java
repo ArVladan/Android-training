@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import promo.kit.userregistration.R;
 
 public class AddNewUser extends AppCompatActivity {
+    private static String FRAGMENT_INSTANCE_NAME = "fragment";
+    AddNewUserFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,24 +19,29 @@ public class AddNewUser extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_add);
 
         if (fragment == null) {
-            fragment = new MainActivityFragment();
+            fragment = new AddNewUserFragment();
             fm.beginTransaction()
-                    .add(R.id.fragment, fragment)
+                    .add(R.id.fragment_add, fragment)
                     .commit();
         }
     }
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
+
+    @Override
+    protected void onPause() {
+        super.onPause();
 
     }
 
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
 
     }
 
